@@ -18,8 +18,11 @@ yarn start
 open ios/sprinkle.xcodeproj
 ```
 5\. Pick what device you want to install it on at the top left of Xcode
+
 6\. Press play
+
 7\. Wait for the app to launch on your device
+
 8\. (Optional) Press the stop button in Xcode, quit Xcode, and relaunch the app on your device or simulator
 
 You only need to follow steps 4-8 the first time you run Sprinkle or if the native dependencies are changed
