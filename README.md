@@ -59,5 +59,7 @@ git clone git@github.com:txcsmad/sprinkle.git ~/dev/sprinkle && cd $_ && yarn in
 atom
 ```
 2\. Hit cmd+shift+p
+
 3\. Search for `Install Packages and Themes`
+
 4\. Install `language-babel` and `linter-eslint`
