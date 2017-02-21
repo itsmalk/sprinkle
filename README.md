@@ -5,29 +5,29 @@
 
 2\. [Atom](https://atom.io)
 
-3\. Open your terminal and run the following commands
+Open your terminal and run the following commands
 
-4\. [Homebrew](https://brew.sh)
+3\. [Homebrew](https://brew.sh)
 ```
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
-5\. [Git](https://www.git-scm.com)
+4\. [Git](https://www.git-scm.com)
 ```
 brew install git
 ```
-6\. [Node JS](https://nodejs.org/en/)
+5\. [Node JS](https://nodejs.org/en/)
 ```
 brew install node
 ```
-7\. [Yarn](https://yarnpkg.com/en/)
+6\. [Yarn](https://yarnpkg.com/en/)
 ```
 brew install yarn
 ```
-8\. [React Native](https://facebook.github.io/react-native/)
+7\. [React Native](https://facebook.github.io/react-native/)
 ```
 brew install watchman && npm install -g react-native-cli
 ```
-9\. Clone this repository and install dependencies
+8\. Clone this repository and install dependencies
 ```
 git clone git@github.com:txcsmad/sprinkle.git ~/dev/sprinkle && cd $_ && yarn install && react-native link
 ```
