@@ -8,6 +8,14 @@ function rehydrated(state = false, action = {}) {
   return state;
 }
 
+function searchFocused(state = false, action = {}) {
+  if (action.type === Actions.SET_SEARCH_FOCUSED) {
+    return action.payload;
+  }
+  return state;
+}
+
 export default combineReducers({
   rehydrated,
+  searchFocused,
 })
