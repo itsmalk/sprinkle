@@ -57,6 +57,7 @@ atom .
 yarn start
 ```
 You can skip the following steps if you have installed Sprinkle on the simulator and the native dependencies haven't changed
+
 4\. Open Sprinkle in Xcode
 ```
 open ios/sprinkle.xcodeproj
