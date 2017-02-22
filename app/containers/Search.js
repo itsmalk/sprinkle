@@ -5,7 +5,9 @@ import {
   View,
   Animated,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { Colors } from '@/constants';
 import GridView from 'react-native-grid-view'
 import SearchBar from '@/components/SearchBar'
@@ -85,9 +87,13 @@ class Search extends Component {
     }
   }
 
+  _pushFoodView = () => {
+    Actions.dish();
+  }
+
   _renderItem = (item) => {
     return (
-      <View style={styles.item} key={item}/>
+      <TouchableOpacity style={styles.item} key={item} onPress={this._pushFoodView} />
     )
   }
 

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Search from '@/containers/Search';
 import Post from '@/containers/Post';
 import Results from '@/containers/Results';
+import Dish from '@/containers/Dish';
 
 const ReduxRouter = connect()(Router);
 
@@ -22,8 +23,9 @@ class Nav extends Component {
             <Scene key="root" hideNavBar>
               <Scene key="search" component={Search} initial direction="vertical"/>
               <Scene key="post" component={Post} direction="vertical" schema="modal" panHandlers={null} />
+              <Scene key="results" component={Results} />
+              <Scene key="dish" component={Dish} />
             </Scene>
-            <Scene key="results" component={Results} />
           </Scene>
         </ReduxRouter>
       );
