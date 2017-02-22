@@ -64,6 +64,9 @@ open ios/sprinkle.xcodeproj
 
 6\. Press play and wait for the app to launch on your device
 
-7\. Press the stop button in Xcode, quit Xcode, and relaunch the app on your device or simulator `Optional`
+## Helpful Documentation
 
-You only need to follow steps 4-8 the first time you run Sprinkle or if the native dependencies are changed
+1. [React Native](https://facebook.github.io/react-native/docs/getting-started.html)
+2. [React](https://facebook.github.io/react/docs/hello-world.html)
+3. [React Native Camera](https://github.com/lwansbrough/react-native-camera)
+4. [React Native Maps](https://github.com/airbnb/react-native-maps)
