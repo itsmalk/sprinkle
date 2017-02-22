@@ -68,20 +68,23 @@ class Search extends Component {
         to = { opacity: 1, scrollY: this._previousScrollY };
         this._previousScrollY = null;
       }
+      // FIXME run animation before focusing input
       Animated.parallel([
         Animated.timing(
           this.state.opacity,
           {
             toValue: to.opacity,
             duration: 250,
-          }
+          },
+          { useNativeDriver: true },
         ),
         Animated.timing(
           this.state.scrollY,
           {
             toValue: to.scrollY,
             duration: 250,
-          }
+          },
+          { useNativeDriver: true },
         ),
       ]).start();
     }
