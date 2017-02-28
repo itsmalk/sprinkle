@@ -11,6 +11,7 @@ import { Actions } from 'react-native-router-flux';
 import { Colors } from '@/constants';
 import GridView from 'react-native-grid-view'
 import SearchBar from '@/components/SearchBar'
+import PostButton from '@/components/PostButton'
 
 const AnimatedGridView = Animated.createAnimatedComponent(GridView);
 
@@ -123,6 +124,7 @@ class Search extends Component {
           scrollEnabled={!this.props.searchFocused}
         />
         <SearchBar scrollY={this.state.scrollY} />
+        <PostButton />
       </View>
     )
   }
