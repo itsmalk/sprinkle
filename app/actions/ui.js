@@ -12,3 +12,11 @@ export function setSearchFocused(payload) {
     payload,
   };
 }
+
+export const SET_SHOW_PANEL = `${PREFIX}SET_SHOW_PANEL`;
+export function setShowPanel(payload) {
+  return { 
+    type: SET_SHOW_PANEL,
+    payload,
+  };
+}

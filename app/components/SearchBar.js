@@ -2,68 +2,97 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   StyleSheet,
-  Animated,
+  View,
   TextInput,
+  TouchableWithoutFeedback,
 } from 'react-native';
-
-import { setSearchFocused } from '@/actions/ui';
+import {
+  setSearchFocused,
+  setShowPanel,
+} from '@/actions/ui';
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    height: 50,
-    left: 10,
-    right: 10,
-    top: 25,
+    padding: 10,
+    paddingBottom: 0,
+  },
+  bg: {
+    flexDirection: 'row',
+    height: 40,
+    borderRadius: 5,
+    backgroundColor: '#C9C9C940',
+    overflow: 'hidden',
+  },
+  inputWrap: {
+    flex: 1,
+    height: 40,
   },
   input: {
     flex: 1,
-    borderWidth: 1,
-    borderRadius: 4,
-    paddingHorizontal: 18,
-    fontFamily: 'AvenirNext-Regular',
-    fontSize: 18,
-    borderColor: '#ECECEC',
-    backgroundColor: '#fff',
-    paddingTop: 3,
-    shadowColor: 'rgba(223, 223, 223, 50)',
-    shadowOffset: { width: 0, height: 1 },
-    shadowRadius: 4,
-    shadowOpacity: 0.5,
+    paddingTop: 2,
+    paddingHorizontal: 12,
+    fontSize: 16,
+    height: 40,
   },
+  showPanel: {
+    ...StyleSheet.absoluteFillObject
+  },
+  showPanelBtn: {
+    flex: 1,
+  },
+  actions: {
+    width: 90,
+  }
 });
 
 const mapDispatchToProps = {
+  setShowPanel,
   onBlur: setSearchFocused.bind(null, false),
   onFocus: setSearchFocused.bind(null, true),
 }
 
-@connect(null, mapDispatchToProps)
+@connect(null, mapDispatchToProps, null, { withRef: true })
 class SearchBar extends Component {
+  _setInputRef = (ref) => {
+    this.input = ref
+  }
+
+  _showPanel = () => {
+    this.props.setShowPanel(true)
+  }
+
+  _hidePanel = () => {
+    this.props.setShowPanel(false)
+  }
+
   render() {
-    const translateY = {
-      transform: [
-        {
-          translateY: this.props.scrollY.interpolate({
-            inputRange: [0, 125],
-            outputRange: [125, 0],
-            extrapolate: 'clamp',
-          })
-        }
-      ]
-    }
+    const {
+      showPanel,
+    } = this.props;
+    const pointerEvents = showPanel ? "none" : "auto"
     return (
-      <Animated.View
-        style={[translateY, styles.container]}
-      >
-        <TextInput
-          style={styles.input}
-          placeholder="What are you craving?"
-          placeholderTextColor="#000"
-          onFocus={this.props.onFocus}
-          onBlur={this.props.onBlur}
-        />
-      </Animated.View>
+      <View style={styles.container}>
+        <View style={styles.bg}>
+          <View style={styles.inputWrap}>
+            <TextInput
+              style={styles.input}
+              placeholder="What are you craving?"
+              placeholderTextColor="#5E5E5E"
+              ref={this._setInputRef}
+              onFocus={this.props.onFocus}
+              onBlur={this.props.onBlur}
+              returnKeyType="done"
+              onSubmitEditing={this._hidePanel}
+            />
+            <View style={styles.showPanel} pointerEvents={pointerEvents}>
+              <TouchableWithoutFeedback onPress={this._showPanel}>
+                <View style={styles.showPanelBtn} />
+              </TouchableWithoutFeedback>
+            </View>
+          </View>
+          <View style={styles.actions} />
+        </View>
+      </View>
     )
   }
 }

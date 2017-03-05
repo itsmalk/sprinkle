@@ -15,7 +15,15 @@ function searchFocused(state = false, action = {}) {
   return state;
 }
 
+function showPanel(state = false, action = {}) {
+  if (action.type === Actions.SET_SHOW_PANEL) {
+    return action.payload;
+  }
+  return state;
+}
+
 export default combineReducers({
   rehydrated,
   searchFocused,
+  showPanel,
 })

@@ -10,18 +10,10 @@ import {
 import { Images } from '@/constants';
 
 const styles = StyleSheet.create({
-  container: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: 0,
-    paddingBottom: 40,
-    paddingRight: 8,
-    alignItems: "flex-end",
-  },
   button: {
-    alignItems: "center",
-    justifyContent: "center",
+    position: 'absolute',
+    bottom: 8,
+    right: 10,
   },
   img: {
     backgroundColor: 'transparent',
@@ -31,17 +23,15 @@ const styles = StyleSheet.create({
 class PostButton extends Component {
   render() {
     return (
-      <View style={styles.container} pointerEvents="box-none">
-        <TouchableOpacity
-          style={styles.button}
-          onPress={this._pushPostView}
-        >
-          <Image
-            source={Images.CAM_BTN}
-            style={styles.img}
-          />
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={this._pushPostView}
+      >
+        <Image
+          source={Images.CAM_BTN}
+          style={styles.img}
+        />
+      </TouchableOpacity>
     )
   }
 }
