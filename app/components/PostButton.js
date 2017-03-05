@@ -5,28 +5,9 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
-  Text,
-  Dimensions
+  Image,
 } from 'react-native';
-import { Colors } from '@/constants';
-
-class PostButton extends Component {
-  _pushPostView = ()=>{
-    Actions.post()
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={this._pushPostView}
-        >
-        <Text style={styles.text}>+</Text>
-        </TouchableOpacity>
-      </View>
-    )
-  }
-}
+import { Images } from '@/constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,17 +15,35 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    height: 120,
-    alignItems: "center",
+    paddingBottom: 40,
+    paddingRight: 8,
+    alignItems: "flex-end",
   },
   button: {
-    height: 80,
-    aspectRatio: 1,
-    backgroundColor: Colors.BLUE,
-    borderRadius: 40,
     alignItems: "center",
     justifyContent: "center",
+  },
+  img: {
+    backgroundColor: 'transparent',
   }
 });
+
+class PostButton extends Component {
+  render() {
+    return (
+      <View style={styles.container} pointerEvents="box-none">
+        <TouchableOpacity
+          style={styles.button}
+          onPress={this._pushPostView}
+        >
+          <Image
+            source={Images.CAM_BTN}
+            style={styles.img}
+          />
+        </TouchableOpacity>
+      </View>
+    )
+  }
+}
 
 export default PostButton;
