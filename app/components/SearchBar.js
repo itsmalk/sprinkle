@@ -4,16 +4,18 @@ import {
   StyleSheet,
   View,
   TextInput,
-  TouchableWithoutFeedback,
 } from 'react-native';
 import {
   setSearchFocused,
   setShowPanel,
 } from '@/actions/ui';
+import RatingsButton from '@/components/RatingsButton'
+import CostButton from '@/components/CostButton'
+import LocationButton from '@/components/LocationButton'
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
+    padding: 7,
     paddingBottom: 0,
   },
   bg: {
@@ -34,14 +36,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     height: 40,
   },
-  showPanel: {
-    ...StyleSheet.absoluteFillObject
-  },
-  showPanelBtn: {
-    flex: 1,
-  },
   actions: {
     width: 90,
+    marginRight: 5,
+    flexDirection: 'row',
   }
 });
 
@@ -57,19 +55,7 @@ class SearchBar extends Component {
     this.input = ref
   }
 
-  _showPanel = () => {
-    this.props.setShowPanel(true)
-  }
-
-  _hidePanel = () => {
-    this.props.setShowPanel(false)
-  }
-
   render() {
-    const {
-      showPanel,
-    } = this.props;
-    const pointerEvents = showPanel ? "none" : "auto"
     return (
       <View style={styles.container}>
         <View style={styles.bg}>
@@ -82,15 +68,14 @@ class SearchBar extends Component {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
               returnKeyType="done"
-              onSubmitEditing={this._hidePanel}
+              autoCorrect={false}
             />
-            <View style={styles.showPanel} pointerEvents={pointerEvents}>
-              <TouchableWithoutFeedback onPress={this._showPanel}>
-                <View style={styles.showPanelBtn} />
-              </TouchableWithoutFeedback>
-            </View>
           </View>
-          <View style={styles.actions} />
+          <View style={styles.actions}>
+            <RatingsButton />
+            <CostButton />
+            <LocationButton />
+          </View>
         </View>
       </View>
     )

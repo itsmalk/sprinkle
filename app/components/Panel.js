@@ -4,18 +4,14 @@ import {
   View,
   Animated,
   PixelRatio,
-  TouchableWithoutFeedback,
-  Easing,
+  Keyboard,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { BlurView } from 'react-native-blur';
-import { showPanel } from '@/selectors/panel'
 import SearchBar from '@/components/SearchBar'
-import SearchResults from '@/components/SearchResults'
-import { setShowPanel } from '@/actions/ui';
 
-const panelHeight = 450
-const miniPanelHeight = 104
+const panelHeight = 350
+const miniPanelHeight = 105
 const ratio = PixelRatio.get()
 const yDelta = panelHeight - miniPanelHeight
 
@@ -31,60 +27,60 @@ const styles = StyleSheet.create({
   dismissButton: {
     flex: 1,
     backgroundColor: 'transparent',
+    borderBottomWidth: 1 / ratio,
+    borderColor: '#B2B2B2',
   },
   blur: {
     height: panelHeight,
-    borderWidth: 1 / ratio,
-    borderColor: '#B2B2B2',
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
   }
 });
 
 const mapStateToProps = state => ({
-  showPanel: showPanel(state),
+  searchFocused: state.ui.searchFocused,
 })
 
-const mapDispatchToProps = {
-  setShowPanel,
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connect(mapStateToProps)
 export default class Panel extends Component {
   state = {
     translateY: new Animated.Value(yDelta),
   }
 
-  componentDidUpdate(prevProps) {
-    this._animatePanel(prevProps.showPanel);
+  componentWillMount () {
+    this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow', this._keyboardWillShow);
+    this.keyboardWillHideListener = Keyboard.addListener('keyboardWillHide', this._keyboardWillHide);
   }
 
-  _animatePanel = (prevPanel) => {
-    if (prevPanel !== this.props.showPanel) {
-      let to;
-      if (this.props.showPanel) {
-        to = 0;
-        setTimeout(() => {
-          this._searchInput.focus()
-        }, 100)
-      }
-      else {
-        to = yDelta;
-      }
-      Animated.timing(
-        this.state.translateY,
-        {
-          toValue: to,
-          easing: Easing.elastic(0.8),
-        },
-        { useNativeDriver: true },
-      ).start();
+  componentWillUnmount () {
+    this.keyboardWillShowListener.remove();
+    this.keyboardWillHideListener.remove();
+  }
+
+  _keyboardWillShow = (e) => {
+    const kbHeight = e.endCoordinates.height;
+    this._animatePanel(kbHeight)
+  }
+
+  _keyboardWillHide = () => {
+    const kbHeight = 0;
+    this._animatePanel(kbHeight)
+  }
+
+  _animatePanel = (kbHeight) => {
+    let to;
+    if (kbHeight) {
+      to = yDelta - kbHeight + 50;
     }
-  }
-
-  _dismissPanel = () => {
-    this.props.setShowPanel(false)
-    this._searchInput.blur()
+    else {
+      to = yDelta;
+    }
+    Animated.timing(
+      this.state.translateY,
+      {
+        toValue: to,
+        duration: 230,
+      },
+      { useNativeDriver: true },
+    ).start();
   }
 
   _setSearchRef = (ref) => {
@@ -92,26 +88,16 @@ export default class Panel extends Component {
   }
 
   render() {
-    const {
-      showPanel,
-    } = this.props;
     const translateY = {
       transform: [{ translateY: this.state.translateY }]
     }
-    const dismissPointerEvents = showPanel ? "auto" : "none"
     return (
       <Animated.View style={[styles.container, translateY]} pointerEvents="box-none">
-        <View style={styles.dismissButton} pointerEvents={dismissPointerEvents}>
-          <TouchableWithoutFeedback onPress={this._dismissPanel}>
-            <View style={styles.dismissButton} />
-          </TouchableWithoutFeedback>
-        </View>
+        <View style={styles.dismissButton} pointerEvents="none" />
         <BlurView blurType="xlight" blurAmount={10} style={styles.blur}>
           <SearchBar
             ref={this._setSearchRef}
-            showPanel={showPanel}
           />
-          <SearchResults showPanel={showPanel} />
         </BlurView>
       </Animated.View>
     )

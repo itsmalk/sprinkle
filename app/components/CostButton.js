@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 import {
   StyleSheet,
   View,
@@ -11,16 +10,16 @@ import { Images } from '@/constants';
 
 const styles = StyleSheet.create({
   button: {
-    position: 'absolute',
-    bottom: 6,
-    right: 9,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   img: {
     backgroundColor: 'transparent',
   }
 });
 
-class PostButton extends Component {
+class CostButton extends Component {
   render() {
     return (
       <TouchableOpacity
@@ -28,7 +27,7 @@ class PostButton extends Component {
         onPress={this._pushPostView}
       >
         <Image
-          source={Images.CAM_BTN}
+          source={Images.COST.LOW}
           style={styles.img}
         />
       </TouchableOpacity>
@@ -36,4 +35,4 @@ class PostButton extends Component {
   }
 }
 
-export default PostButton;
+export default CostButton;
