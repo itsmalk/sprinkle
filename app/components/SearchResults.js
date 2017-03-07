@@ -4,29 +4,33 @@ import {
   StyleSheet,
   View,
   Dimensions,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
+  Animated,
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 import { Colors } from '@/constants';
 import GridView from 'react-native-grid-view'
-import {
-  setShowPanel,
-} from '@/actions/ui';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 const itemWidth = (width - 45) / 2;
+
+const yDelta = height - 105
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    position: 'absolute',
+    top: 0,
+    bottom: 105,
+    left: 0,
+    right: 0,
+    overflow: 'hidden',
     backgroundColor: 'transparent',
   },
   grid: {
     flex: 1,
+    overflow: 'hidden',
   },
   content: {
     padding: 7.5,
+    overflow: 'hidden',
   },
   item: {
     width: itemWidth,
@@ -35,43 +39,48 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     aspectRatio: 1,
   },
-  showPanel: {
-    ...StyleSheet.absoluteFillObject
-  },
-  showPanelBtn: {
-    flex: 1,
-  },
 });
 
 const dataSource = [1,2,3,4,5,6,7,8,9,10,11,12];
 
-const mapDispatchToProps = {
-  setShowPanel,
-}
+const mapStateToProps = state => ({
+  showSearchResults: state.ui.showSearchResults
+})
 
-@connect(null, mapDispatchToProps)
+@connect(mapStateToProps)
 class Search extends Component {
-  _pushFoodView = () => {
-    Actions.dish();
+  state = {
+    translateY: new Animated.Value(yDelta)
+  }
+  componentDidUpdate(prevProps) {
+    this._animateResults(prevProps.showSearchResults)
   }
 
-  _showPanel = () => {
-    this.props.setShowPanel(true)
+  _animateResults = (prevProp) => {
+    const showSearchResults = this.props.showSearchResults;
+    if (prevProp !== showSearchResults) {
+      const to = showSearchResults
+        ? 0
+        : yDelta
+      Animated.timing(
+        this.state.translateY,
+        { toValue: to }
+      ).start();
+    }
   }
 
   _renderItem = (item) => {
     return (
-      <TouchableOpacity style={styles.item} key={item} onPress={this._pushFoodView} />
+      <View style={styles.item} key={item} />
     )
   }
 
   render() {
-    const {
-      showPanel,
-    } = this.props;
-    const pointerEvents = showPanel ? "none" : "auto"
+    const translate = {
+      transform: [{ translateY: this.state.translateY }]
+    }
     return (
-      <View style={styles.container}>
+      <Animated.View style={[styles.container, translate]}>
         <GridView
           ref={ref => { this._grid = ref }}
           contentContainerStyle={styles.content}
@@ -82,13 +91,9 @@ class Search extends Component {
           scrollEnabled={this.props.showPanel}
           keyboardShouldPersistTaps="never"
           keyboardDismissMode="on-drag"
+          removeClippedSubviews
         />
-        <View style={styles.showPanel} pointerEvents={pointerEvents}>
-          <TouchableWithoutFeedback onPress={this._showPanel}>
-            <View style={styles.showPanelBtn} />
-          </TouchableWithoutFeedback>
-        </View>
-      </View>
+      </Animated.View>
     )
   }
 }

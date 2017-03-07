@@ -11,6 +11,7 @@ import PrevPageButton from '@/components/PrevPageButton'
 import NextPageButton from '@/components/NextPageButton'
 import LikesButton from '@/components/LikesButton'
 import MenuButton from '@/components/MenuButton'
+import SearchResults from '@/components/SearchResults'
 
 const styles = StyleSheet.create({
   container: {
@@ -31,6 +32,7 @@ export default class MapView extends Component {
       <View style={styles.container}>
         <FoodMap />
         <Panel />
+        <SearchResults />
         <PostButton />
         <View
           style={styles.actions}

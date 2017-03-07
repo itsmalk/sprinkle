@@ -22,8 +22,16 @@ function showPanel(state = false, action = {}) {
   return state;
 }
 
+function showSearchResults(state = false, action = {}) {
+  if (action.type === Actions.SET_SHOW_SEARCH_RESULTS) {
+    return action.payload;
+  }
+  return state;
+}
+
 export default combineReducers({
   rehydrated,
   searchFocused,
   showPanel,
+  showSearchResults
 })

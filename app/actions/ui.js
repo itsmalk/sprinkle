@@ -7,7 +7,7 @@ export function setRehydrated() {
 
 export const SET_SEARCH_FOCUSED = `${PREFIX}SET_SEARCH_FOCUSED`;
 export function setSearchFocused(payload) {
-  return { 
+  return {
     type: SET_SEARCH_FOCUSED,
     payload,
   };
@@ -15,8 +15,16 @@ export function setSearchFocused(payload) {
 
 export const SET_SHOW_PANEL = `${PREFIX}SET_SHOW_PANEL`;
 export function setShowPanel(payload) {
-  return { 
+  return {
     type: SET_SHOW_PANEL,
+    payload,
+  };
+}
+
+export const SET_SHOW_SEARCH_RESULTS = `${PREFIX}SET_SHOW_SEARCH_RESULTS`;
+export function setShowSearchResults(payload) {
+  return {
+    type: SET_SHOW_SEARCH_RESULTS,
     payload,
   };
 }
