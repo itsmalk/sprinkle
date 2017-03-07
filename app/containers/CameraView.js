@@ -10,6 +10,8 @@ import { Colors } from '@/constants';
 import Camera from 'react-native-camera';
 import GridButton from '@/components/GridButton';
 import FlashButton from '@/components/FlashButton';
+import CameraNextButton from '@/components/CameraNextButton';
+import CameraBackButton from '@/components/CameraBackButton';
 
 var {height, width} = Dimensions.get('window');
 
@@ -30,6 +32,8 @@ class CameraView extends Component {
       <View style={styles.container}>
       <GridButton />
       <FlashButton />
+      <CameraNextButton />
+      <CameraBackButton />
       <Camera
           ref={(cam) => {
             this.camera = cam;
