@@ -21,6 +21,9 @@ const styles = StyleSheet.create({
 });
 
 class PostButton extends Component {
+  _pushPostView = () => {
+    Actions.post()
+  }
   render() {
     return (
       <TouchableOpacity
