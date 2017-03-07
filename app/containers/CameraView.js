@@ -3,11 +3,13 @@ import {
   StyleSheet,
   Text,
   View,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from 'react-native';
 import { Colors } from '@/constants';
 import Camera from 'react-native-camera';
-
+import GridButton from '@/components/GridButton';
+import FlashButton from '@/components/FlashButton';
 
 var {height, width} = Dimensions.get('window');
 
@@ -26,6 +28,8 @@ class CameraView extends Component {
   render() {
     return (
       <View style={styles.container}>
+      <GridButton />
+      <FlashButton />
       <Camera
           ref={(cam) => {
             this.camera = cam;
