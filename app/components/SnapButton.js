@@ -26,7 +26,7 @@ class SnapButton extends Component {
     return (
       <TouchableOpacity
         style={styles.button}
-        onPress={this._pushPostView}
+        onPress={this.props.capture}
       >
         <Image
           source={Images.SNAP_BTN}

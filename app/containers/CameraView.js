@@ -38,8 +38,10 @@ const mapDispatchToProps = {
 class CameraView extends Component {
   _takePhoto = async () => {
     const img = await this.camera.capture();
-    this.props.appendCameraRoll(img.path);
-  } 
+    this.props.appendCameraRoll({
+      uri: img.path
+    });
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -55,7 +57,9 @@ class CameraView extends Component {
         <CameraRoll />
         <CameraNextButton />
         <CameraBackButton />
-        <SnapButton />
+        <SnapButton
+          capture={this._takePhoto}
+        />
       </View>
     )
   }

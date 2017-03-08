@@ -38,6 +38,9 @@ class CameraRoll extends Component {
   }
 
   render() {
+    if (!this.props.cameraRoll.length){
+      return null
+    }
     return (
       <ListView
         style={styles.container}
