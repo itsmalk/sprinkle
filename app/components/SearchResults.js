@@ -5,9 +5,10 @@ import {
   View,
   Dimensions,
   Animated,
+  ListView,
 } from 'react-native';
 import { Colors } from '@/constants';
-import GridView from 'react-native-grid-view'
+import { BlurView } from 'react-native-blur';
 
 const { width, height } = Dimensions.get('window');
 const itemWidth = (width - 45) / 2;
@@ -18,19 +19,27 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     top: 0,
-    bottom: 105,
+    height: yDelta,
     left: 0,
     right: 0,
-    overflow: 'hidden',
     backgroundColor: 'transparent',
+    overflow: 'hidden',
+    backfaceVisibility: 'visible',
+  },
+  bg: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: yDelta,
+    height: yDelta,
   },
   grid: {
     flex: 1,
-    overflow: 'hidden',
   },
   content: {
     padding: 7.5,
-    overflow: 'hidden',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   item: {
     width: itemWidth,
@@ -41,7 +50,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const dataSource = [1,2,3,4,5,6,7,8,9,10,11,12];
+const dataSource = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+
+const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 const mapStateToProps = state => ({
   showSearchResults: state.ui.showSearchResults
@@ -50,8 +61,10 @@ const mapStateToProps = state => ({
 @connect(mapStateToProps)
 class Search extends Component {
   state = {
-    translateY: new Animated.Value(yDelta)
+    translateY: new Animated.Value(yDelta),
+    dataSource: ds.cloneWithRows(dataSource),
   }
+
   componentDidUpdate(prevProps) {
     this._animateResults(prevProps.showSearchResults)
   }
@@ -60,11 +73,12 @@ class Search extends Component {
     const showSearchResults = this.props.showSearchResults;
     if (prevProp !== showSearchResults) {
       const to = showSearchResults
-        ? 0
-        : yDelta
+        ? -yDelta
+        : 0
       Animated.timing(
         this.state.translateY,
-        { toValue: to }
+        { toValue: to },
+        { useNativeDriver: true }
       ).start();
     }
   }
@@ -79,21 +93,25 @@ class Search extends Component {
     const translate = {
       transform: [{ translateY: this.state.translateY }]
     }
+    const pointerEvents = this.props.showSearchResults ? 'auto' : 'none';
     return (
-      <Animated.View style={[styles.container, translate]}>
-        <GridView
-          ref={ref => { this._grid = ref }}
-          contentContainerStyle={styles.content}
-          style={styles.grid}
-          items={dataSource}
-          itemsPerRow={2}
-          renderItem={this._renderItem}
-          scrollEnabled={this.props.showPanel}
-          keyboardShouldPersistTaps="never"
-          keyboardDismissMode="on-drag"
-          removeClippedSubviews
-        />
-      </Animated.View>
+      <View style={styles.container} pointerEvents={pointerEvents}>
+        <Animated.View style={[styles.bg, translate]}>
+          <BlurView blurType="light" blurAmount={10} style={styles.grid}>
+            <ListView
+              ref={ref => { this._ref = ref }}
+              contentContainerStyle={styles.content}
+              style={styles.grid}
+              dataSource={this.state.dataSource}
+              renderRow={this._renderItem}
+              scrollEnabled={this.props.showSearchResults}
+              pageSize={10}
+              initialListSize={1}
+              removeClippedSubviews={false}
+            />
+          </BlurView>
+        </Animated.View>
+      </View>
     )
   }
 }

@@ -31,8 +31,8 @@ export default class MapView extends Component {
     return (
       <View style={styles.container}>
         <FoodMap />
-        <Panel />
         <SearchResults />
+        <Panel />
         <PostButton />
         <View
           style={styles.actions}
