@@ -31,7 +31,7 @@ class CameraBackButton extends Component {
         onPress={this._pushMapView}
       >
         <Image
-          source={Images.PREV_PAGE_BTN}
+          source={Images.BACKWARD_BTN}
           style={styles.img}
         />
       </TouchableOpacity>

@@ -27,7 +27,7 @@ class GridButton extends Component {
         onPress={this._pushPostView}
       >
         <Image
-          source={Images.PREV_PAGE_BTN}
+          source={Images.GRID_BTN}
           style={styles.img}
         />
       </TouchableOpacity>

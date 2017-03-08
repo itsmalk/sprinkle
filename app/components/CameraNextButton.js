@@ -28,7 +28,7 @@ class CameraNextButton extends Component {
         onPress={this._pushPostView}
       >
         <Image
-          source={Images.NEXT_PAGE_BTN}
+          source={Images.FORWARD_BTN}
           style={styles.img}
         />
       </TouchableOpacity>

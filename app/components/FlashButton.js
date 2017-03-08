@@ -28,7 +28,7 @@ class FlashButton extends Component {
         onPress={this._pushPostView}
       >
         <Image
-          source={Images.PREV_PAGE_BTN}
+          source={Images.FLASH_BTN}
           style={styles.img}
         />
       </TouchableOpacity>
