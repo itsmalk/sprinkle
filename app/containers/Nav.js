@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import MapView from '@/containers/MapView';
 import Post from '@/containers/Post';
 import Dish from '@/containers/Dish';
+import CameraView from '@/containers/CameraView';
 
 const ReduxRouter = connect()(Router);
 
@@ -21,7 +22,7 @@ class Nav extends Component {
           <Scene key="modal" component={Modal}>
             <Scene key="root" hideNavBar>
               <Scene key="map" component={MapView} initial direction="vertical" />
-              <Scene key="post" component={Post} direction="vertical" schema="modal" panHandlers={null} />
+              <Scene key="post" component={CameraView} direction="vertical" schema="modal" panHandlers={null} />
               <Scene key="dish" component={Dish} />
             </Scene>
           </Scene>
