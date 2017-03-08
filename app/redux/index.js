@@ -26,7 +26,7 @@ export default function configureStore() {
   const InitialState = {};
   const store = finalCreateStore(rootReducer, InitialState);
   persistStore(store, {
-    whitelist: ['user', 'menuItems', 'restaurants'],
+    whitelist: ['user', 'menuItems', 'restaurants', 'camera'],
     storage: AsyncStorage,
     transforms: [immutableTransform({
       whitelist: ['menuItems', 'restaurants'],

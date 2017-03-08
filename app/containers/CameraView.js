@@ -50,7 +50,12 @@ class CameraView extends Component {
             this.camera = cam;
           }}
           style={styles.preview}
-          aspect={Camera.constants.Aspect.fill}>
+          aspect={Camera.constants.Aspect.fill}
+          captureAudio={false}
+          keepAwake
+          captureTarget={Camera.constants.CaptureTarget.disk}
+          orientation={Camera.constants.Orientation.portrait}
+        >
           <GridButton />
           <FlashButton />
         </Camera>

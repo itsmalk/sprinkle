@@ -8,7 +8,7 @@ import PhotoCheckbox from '@/components/CameraView/PhotoCheckbox';
 
 const styles = StyleSheet.create({
   container: {
-    height: 80,
+    height: 120,
   }
 })
 
@@ -27,9 +27,9 @@ class CameraRoll extends Component {
     };
   }
 
-  componentDidUpdate() {
+  componentWillReceiveProps(nextProps) {
     this.setState({
-      dataSource: ds.cloneWithRows(this.props.cameraRoll),
+      dataSource: ds.cloneWithRows(nextProps.cameraRoll),
     })
   }
 

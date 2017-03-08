@@ -7,7 +7,7 @@ import {
 
 const styles = StyleSheet.create({
   btn: {
-    height: 80,
+    height: 120,
     aspectRatio: 1,
     marginRight: 1,
   },
