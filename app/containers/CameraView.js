@@ -12,6 +12,7 @@ import GridButton from '@/components/GridButton';
 import FlashButton from '@/components/FlashButton';
 import CameraNextButton from '@/components/CameraNextButton';
 import CameraBackButton from '@/components/CameraBackButton';
+import SnapButton from '@/components/SnapButton';
 
 var {height, width} = Dimensions.get('window');
 
@@ -34,6 +35,7 @@ class CameraView extends Component {
       <FlashButton />
       <CameraNextButton />
       <CameraBackButton />
+      <SnapButton />
       <Camera
           ref={(cam) => {
             this.camera = cam;

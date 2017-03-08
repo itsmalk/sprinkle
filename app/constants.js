@@ -18,6 +18,7 @@ export const Images = {
   GRID_BTN: require('@/assets/images/grid.png'),
   FORWARD_BTN: require('@/assets/images/forward.png'),
   BACKWARD_BTN: require('@/assets/images/backward.png'),
+  SNAP_BTN: require('@/assets/images/snap.png'),
   COST: {
     HIGH: require('@/assets/images/costHigh.png'),
     MED: require('@/assets/images/costMed.png'),

@@ -12,7 +12,7 @@ import { Images } from '@/constants';
 const styles = StyleSheet.create({
   button: {
     position: 'absolute',
-    bottom: 6,
+    bottom: 12,
     right: 9,
   },
   img: {
