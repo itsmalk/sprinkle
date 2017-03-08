@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 
 class CameraBackButton extends Component {
   _pushMapView = () => {
-    Actions.map()
+    Actions.pop()
   }
   render() {
     return (
