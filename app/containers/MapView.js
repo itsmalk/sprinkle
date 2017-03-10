@@ -4,14 +4,14 @@ import {
   View,
 } from 'react-native';
 import { Colors } from '@/constants';
-import FoodMap from '@/components/FoodMap'
-import Panel from '@/components/Panel'
-import PostButton from '@/components/PostButton'
-import PrevPageButton from '@/components/PrevPageButton'
-import NextPageButton from '@/components/NextPageButton'
-import LikesButton from '@/components/LikesButton'
-import MenuButton from '@/components/MenuButton'
-import SearchResults from '@/components/SearchResults'
+import FoodMap from '@/components/MapView/FoodMap'
+import Panel from '@/components/MapView/Panel'
+import PostButton from '@/components/MapView/PostButton'
+import PrevPageButton from '@/components/MapView/PrevPageButton'
+import NextPageButton from '@/components/MapView/NextPageButton'
+import LikesButton from '@/components/MapView/LikesButton'
+import MenuButton from '@/components/MapView/MenuButton'
+import SearchResults from '@/components/MapView/SearchResults'
 
 const styles = StyleSheet.create({
   container: {

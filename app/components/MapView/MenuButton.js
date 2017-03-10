@@ -2,22 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   StyleSheet,
-  View,
   TouchableOpacity,
   Image,
 } from 'react-native';
 import { Images } from '@/constants';
 import { setShowSearchResults } from '@/actions/ui';
+import MenuIcon from '@/components/MapView/MenuIcon';
 
 const styles = StyleSheet.create({
-  button: { },
   img: {
     backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: 1.5,
   }
 });
 
 const mapStateToProps = state => ({
-  showSearchResults: state.ui.showSearchResults
+  show: state.ui.showSearchResults
 })
 
 const mapDispatchToProps = {
@@ -27,18 +29,19 @@ const mapDispatchToProps = {
 @connect(mapStateToProps, mapDispatchToProps)
 class MenuButton extends Component {
   _showResults = () => {
-    this.props.setShowSearchResults(!this.props.showSearchResults)
+    this.props.setShowSearchResults(!this.props.show)
   }
   render() {
     return (
       <TouchableOpacity
-        style={styles.button}
         onPress={this._showResults}
       >
         <Image
           source={Images.MENU_BTN}
           style={styles.img}
-        />
+        >
+          <MenuIcon show={this.props.show} />
+        </Image>
       </TouchableOpacity>
     )
   }

@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
+  View,
   StyleSheet,
   ListView,
 } from 'react-native';
 import PhotoCheckbox from '@/components/CameraView/PhotoCheckbox';
+import { Colors } from '@/constants';
 
 const styles = StyleSheet.create({
   container: {
-    height: 120,
-  }
+    height: 122,
+    paddingVertical: 1,
+    backgroundColor: Colors.BLACK,
+  },
+  list: {
+    flex: 1,
+  },
 })
 
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -39,15 +46,17 @@ class CameraRoll extends Component {
 
   render() {
     if (!this.props.cameraRoll.length){
-      return null
+      return <View style={styles.container} />
     }
     return (
-      <ListView
-        style={styles.container}
-        dataSource={this.state.dataSource}
-        renderRow={this._renderRow}
-        horizontal
-      />
+      <View style={styles.container}>
+        <ListView
+          style={styles.list}
+          dataSource={this.state.dataSource}
+          renderRow={this._renderRow}
+          horizontal
+        />
+      </View>
     )
   }
 }

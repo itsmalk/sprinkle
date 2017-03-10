@@ -22,7 +22,7 @@ class Nav extends Component {
           <Scene key="modal" component={Modal}>
             <Scene key="root" hideNavBar>
               <Scene key="map" component={MapView} initial direction="vertical" />
-              <Scene key="post" component={CameraView} direction="vertical" schema="modal" panHandlers={null} />
+              <Scene key="post" component={CameraView} direction="vertical" schema="modal" />
               <Scene key="dish" component={Dish} />
             </Scene>
           </Scene>

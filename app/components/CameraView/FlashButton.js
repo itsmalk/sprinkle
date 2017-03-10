@@ -11,15 +11,16 @@ import { Images } from '@/constants';
 
 const styles = StyleSheet.create({
   button: {
-    top: 2,
-    left: 2,
+    position: 'absolute',
+    bottom: 10,
+    right: 14,
    },
   img: {
     backgroundColor: 'transparent',
   }
 });
 
-class GridButton extends Component {
+class FlashButton extends Component {
   render() {
     return (
       <TouchableOpacity
@@ -27,7 +28,7 @@ class GridButton extends Component {
         onPress={this._pushPostView}
       >
         <Image
-          source={Images.GRID_BTN}
+          source={Images.FLASH.OFF}
           style={styles.img}
         />
       </TouchableOpacity>
@@ -35,4 +36,4 @@ class GridButton extends Component {
   }
 }
 
-export default GridButton;
+export default FlashButton;
