@@ -12,18 +12,15 @@ import { Images } from '@/constants';
 const styles = StyleSheet.create({
   button: {
     position: 'absolute',
-    bottom: 6,
-    right: 9,
-  },
+    top: 2,
+    right: 2,
+   },
   img: {
     backgroundColor: 'transparent',
   }
 });
 
-class PostButton extends Component {
-  _pushPostView = () => {
-    Actions.post()
-  }
+class FlashButton extends Component {
   render() {
     return (
       <TouchableOpacity
@@ -31,7 +28,7 @@ class PostButton extends Component {
         onPress={this._pushPostView}
       >
         <Image
-          source={Images.CAM_BTN}
+          source={Images.FLASH_BTN}
           style={styles.img}
         />
       </TouchableOpacity>
@@ -39,4 +36,4 @@ class PostButton extends Component {
   }
 }
 
-export default PostButton;
+export default FlashButton;

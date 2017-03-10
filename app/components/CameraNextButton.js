@@ -12,7 +12,7 @@ import { Images } from '@/constants';
 const styles = StyleSheet.create({
   button: {
     position: 'absolute',
-    bottom: 6,
+    bottom: 12,
     right: 9,
   },
   img: {
@@ -20,10 +20,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class PostButton extends Component {
-  _pushPostView = () => {
-    Actions.post()
-  }
+class CameraNextButton extends Component {
   render() {
     return (
       <TouchableOpacity
@@ -31,7 +28,7 @@ class PostButton extends Component {
         onPress={this._pushPostView}
       >
         <Image
-          source={Images.CAM_BTN}
+          source={Images.FORWARD_BTN}
           style={styles.img}
         />
       </TouchableOpacity>
@@ -39,4 +36,4 @@ class PostButton extends Component {
   }
 }
 
-export default PostButton;
+export default CameraNextButton;

@@ -11,19 +11,15 @@ import { Images } from '@/constants';
 
 const styles = StyleSheet.create({
   button: {
-    position: 'absolute',
-    bottom: 6,
-    right: 9,
-  },
+    top: 2,
+    left: 2,
+   },
   img: {
     backgroundColor: 'transparent',
   }
 });
 
-class PostButton extends Component {
-  _pushPostView = () => {
-    Actions.post()
-  }
+class GridButton extends Component {
   render() {
     return (
       <TouchableOpacity
@@ -31,7 +27,7 @@ class PostButton extends Component {
         onPress={this._pushPostView}
       >
         <Image
-          source={Images.CAM_BTN}
+          source={Images.GRID_BTN}
           style={styles.img}
         />
       </TouchableOpacity>
@@ -39,4 +35,4 @@ class PostButton extends Component {
   }
 }
 
-export default PostButton;
+export default GridButton;

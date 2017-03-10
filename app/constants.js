@@ -14,6 +14,11 @@ export const Images = {
   NEXT_PAGE_BTN: require('@/assets/images/nextPage.png'),
   LIKES_BTN: require('@/assets/images/likes.png'),
   MENU_BTN: require('@/assets/images/menu.png'),
+  FLASH_BTN: require('@/assets/images/flash.png'),
+  GRID_BTN: require('@/assets/images/grid.png'),
+  FORWARD_BTN: require('@/assets/images/forward.png'),
+  BACKWARD_BTN: require('@/assets/images/backward.png'),
+  SNAP_BTN: require('@/assets/images/snap.png'),
   COST: {
     HIGH: require('@/assets/images/costHigh.png'),
     MED: require('@/assets/images/costMed.png'),

@@ -6,32 +6,30 @@ import {
   View,
   TouchableOpacity,
   Image,
+  Dimensions,
 } from 'react-native';
 import { Images } from '@/constants';
 
 const styles = StyleSheet.create({
   button: {
     position: 'absolute',
-    bottom: 6,
-    right: 9,
+    left: (Dimensions.get('window').width / 2) - 22,
+    bottom: 6
   },
   img: {
     backgroundColor: 'transparent',
   }
 });
 
-class PostButton extends Component {
-  _pushPostView = () => {
-    Actions.post()
-  }
+class SnapButton extends Component {
   render() {
     return (
       <TouchableOpacity
         style={styles.button}
-        onPress={this._pushPostView}
+        onPress={this.props.capture}
       >
         <Image
-          source={Images.CAM_BTN}
+          source={Images.SNAP_BTN}
           style={styles.img}
         />
       </TouchableOpacity>
@@ -39,4 +37,4 @@ class PostButton extends Component {
   }
 }
 
-export default PostButton;
+export default SnapButton;
