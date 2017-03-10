@@ -3,7 +3,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import MapView from 'react-native-maps'
-import FoodMarker from '@/components/FoodMarker';
+import FoodMarker from '@/components/FoodMap/FoodMarker';
 import { Colors } from '@/constants';
 
 const styles = StyleSheet.create({

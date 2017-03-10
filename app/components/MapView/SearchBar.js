@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import {
   StyleSheet,
   View,
   TextInput,
 } from 'react-native';
-import {
-  setSearchFocused,
-  setShowPanel,
-} from '@/actions/ui';
-import RatingsButton from '@/components/RatingsButton'
-import CostButton from '@/components/CostButton'
-import LocationButton from '@/components/LocationButton'
+import RatingsButton from '@/components/SearchBar/RatingsButton'
+import CostButton from '@/components/SearchBar/CostButton'
+import LocationButton from '@/components/SearchBar/LocationButton'
 
 const styles = StyleSheet.create({
   container: {
     padding: 7,
-    paddingBottom: 0,
   },
   bg: {
     flexDirection: 'row',
@@ -43,13 +37,6 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapDispatchToProps = {
-  setShowPanel,
-  onBlur: setSearchFocused.bind(null, false),
-  onFocus: setSearchFocused.bind(null, true),
-}
-
-@connect(null, mapDispatchToProps, null, { withRef: true })
 class SearchBar extends Component {
   _setInputRef = (ref) => {
     this.input = ref
@@ -65,8 +52,6 @@ class SearchBar extends Component {
               placeholder="What are you craving?"
               placeholderTextColor="#5E5E5E"
               ref={this._setInputRef}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
               returnKeyType="done"
               autoCorrect={false}
             />

@@ -11,9 +11,8 @@ const styles = StyleSheet.create({
   marker: {
     height: 31,
     width: 31,
-    borderWidth: 1.5,
+    padding: 1.5,
     borderRadius: 4,
-    backgroundColor: Colors.WHITE,
     shadowColor: Colors.BLACK,
     shadowOffset: {
       height: 1,
@@ -22,14 +21,19 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 2,
   },
+  frame:{
+    flex: 1,
+    backgroundColor: Colors.WHITE,
+    borderRadius: 3,
+  },
   rank: {
     position: 'absolute',
     top: 0,
     left: 0,
-    paddingLeft: 1,
+    padding: 2,
     paddingBottom: 1,
-    paddingRight: 2,
     borderBottomRightRadius: 2,
+    borderTopLeftRadius: 4,
   },
   rankText: {
     fontSize: 11,
@@ -45,7 +49,7 @@ export default class FoodMarker extends Component {
   render() {
     const { marker } = this.props;
     const style = [styles.marker, {
-      borderColor: marker.color,
+      backgroundColor: marker.color,
     }]
     const rankStyle = [styles.rank, {
       backgroundColor: marker.color,
@@ -53,6 +57,7 @@ export default class FoodMarker extends Component {
     return (
       <MapView.Marker coordinate={marker.latlng} onPress={this._onPress}>
         <View style={style}>
+          <View style={styles.frame} />
           <View style={rankStyle}>
             <Text style={styles.rankText}>
               {marker.id}

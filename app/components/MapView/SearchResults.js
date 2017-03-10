@@ -50,7 +50,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const dataSource = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+const dataSource = [];
+let i = 0;
+while (i < 1000) {
+  dataSource.push(i)
+  i++
+}
 
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
@@ -99,7 +104,6 @@ class Search extends Component {
         <Animated.View style={[styles.bg, translate]}>
           <BlurView blurType="light" blurAmount={10} style={styles.grid}>
             <ListView
-              ref={ref => { this._ref = ref }}
               contentContainerStyle={styles.content}
               style={styles.grid}
               dataSource={this.state.dataSource}

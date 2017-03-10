@@ -8,20 +8,6 @@ function rehydrated(state = false, action = {}) {
   return state;
 }
 
-function searchFocused(state = false, action = {}) {
-  if (action.type === Actions.SET_SEARCH_FOCUSED) {
-    return action.payload;
-  }
-  return state;
-}
-
-function showPanel(state = false, action = {}) {
-  if (action.type === Actions.SET_SHOW_PANEL) {
-    return action.payload;
-  }
-  return state;
-}
-
 function showSearchResults(state = false, action = {}) {
   if (action.type === Actions.SET_SHOW_SEARCH_RESULTS) {
     return action.payload;
@@ -31,7 +17,5 @@ function showSearchResults(state = false, action = {}) {
 
 export default combineReducers({
   rehydrated,
-  searchFocused,
-  showPanel,
   showSearchResults
 })

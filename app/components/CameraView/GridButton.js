@@ -6,30 +6,29 @@ import {
   View,
   TouchableOpacity,
   Image,
-  Dimensions,
 } from 'react-native';
 import { Images } from '@/constants';
 
 const styles = StyleSheet.create({
   button: {
     position: 'absolute',
-    left: (Dimensions.get('window').width / 2) - 22,
-    bottom: 6
+    bottom: 11,
+    left: 16,
   },
   img: {
     backgroundColor: 'transparent',
   }
 });
 
-class SnapButton extends Component {
+class GridButton extends Component {
   render() {
     return (
       <TouchableOpacity
         style={styles.button}
-        onPress={this.props.capture}
+        onPress={this._pushPostView}
       >
         <Image
-          source={Images.SNAP_BTN}
+          source={Images.GRID.OFF}
           style={styles.img}
         />
       </TouchableOpacity>
@@ -37,4 +36,4 @@ class SnapButton extends Component {
   }
 }
 
-export default SnapButton;
+export default GridButton;

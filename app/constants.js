@@ -1,6 +1,8 @@
 export const Colors = {
   WHITE: '#fff',
   BLACK: '#000',
+  LIGHT_BLACK: '#242424',
+  BTN_RED: '#F21D41',
   PINK_SPRINKLE: '#F272A7',
   ORANGE_SPRINKLE: '#FB9F6A',
   BLUE_SPRINKLE: '#7DDAD7',
@@ -9,28 +11,33 @@ export const Colors = {
 }
 
 export const Images = {
-  CAM_BTN: require('@/assets/images/camButton.png'),
-  PREV_PAGE_BTN: require('@/assets/images/previousPage.png'),
-  NEXT_PAGE_BTN: require('@/assets/images/nextPage.png'),
-  LIKES_BTN: require('@/assets/images/likes.png'),
-  MENU_BTN: require('@/assets/images/menu.png'),
-  FLASH_BTN: require('@/assets/images/flash.png'),
-  GRID_BTN: require('@/assets/images/grid.png'),
-  FORWARD_BTN: require('@/assets/images/forward.png'),
-  BACKWARD_BTN: require('@/assets/images/backward.png'),
-  SNAP_BTN: require('@/assets/images/snap.png'),
+  CAM_BTN: require('@/assets/images/camButton/camButton.png'),
+  PREV_PAGE_BTN: require('@/assets/images/previousPage/previousPage.png'),
+  NEXT_PAGE_BTN: require('@/assets/images/nextPage/nextPage.png'),
+  LIKES_BTN: require('@/assets/images/likes/likes.png'),
+  MENU_BTN: require('@/assets/images/menu/menu.png'),
+  FLASH: {
+    ON: require('@/assets/images/flash/flash.png'),
+    OFF: require('@/assets/images/flash/flashOff.png'),
+  },
+  GRID: {
+    ON: require('@/assets/images/grid/grid.png'),
+    OFF: require('@/assets/images/grid/gridOff.png'),
+  },
+  FORWARD_BTN: require('@/assets/images/forward/forward.png'),
+  BACKWARD_BTN: require('@/assets/images/back/back.png'),
   COST: {
-    HIGH: require('@/assets/images/costHigh.png'),
-    MED: require('@/assets/images/costMed.png'),
-    LOW: require('@/assets/images/costLow.png'),
-    OFF: require('@/assets/images/costDim.png'),
+    HIGH: require('@/assets/images/cost/costHigh.png'),
+    MED: require('@/assets/images/cost/costMed.png'),
+    LOW: require('@/assets/images/cost/costLow.png'),
+    OFF: require('@/assets/images/cost/costDim.png'),
   },
   LOCATION: {
-    ON: require('@/assets/images/location.png'),
-    OFF: require('@/assets/images/locationDim.png'),
+    ON: require('@/assets/images/location/location.png'),
+    OFF: require('@/assets/images/location/locationDim.png'),
   },
   RATINGS: {
-    ON: require('@/assets/images/ratings.png'),
-    OFF: require('@/assets/images/ratingsDim.png'),
+    ON: require('@/assets/images/ratings/ratings.png'),
+    OFF: require('@/assets/images/ratings/ratingsDim.png'),
   },
 }
