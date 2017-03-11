@@ -10,7 +10,8 @@ import { Colors } from '@/constants';
 
 const styles = StyleSheet.create({
   container: {
-    height: 122,
+    marginTop: 5,
+    flex: 1,
     paddingVertical: 1,
     backgroundColor: Colors.BLACK,
   },

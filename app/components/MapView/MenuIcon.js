@@ -53,27 +53,42 @@ export default class MenuIcon extends Component {
       Animated.parallel([
         Animated.timing(
           this.state.translateTop,
-          { toValue: to.translateTop },
+          { 
+            toValue: to.translateTop,
+            duration: 200,
+          },
           { useNativeDriver: true }
         ),
         Animated.timing(
           this.state.translateBottom,
-          { toValue: to.translateBottom },
+          { 
+            toValue: to.translateBottom,
+            duration: 200,
+          },
           { useNativeDriver: true }
         ),
         Animated.timing(
           this.state.opacity,
-          { toValue: to.opacity },
+          { 
+            toValue: to.opacity ,
+            duration: 200,
+          },
           { useNativeDriver: true }
         ),
         Animated.timing(
           this.state.rotateTop,
-          { toValue: to.rotateTop },
+          { 
+            toValue: to.rotateTop,
+            duration: 200,
+          },
           { useNativeDriver: true }
         ),
         Animated.timing(
           this.state.rotateBottom,
-          { toValue: to.rotateBottom },
+          { 
+            toValue: to.rotateBottom,
+            duration: 200,
+          },
           { useNativeDriver: true }
         )
       ]).start()

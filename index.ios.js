@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
 } from 'react-native';
-
+import 'rxjs';
 import { Provider } from 'react-redux';
 import configureStore from '@/redux';
 import Nav from '@/containers/Nav';

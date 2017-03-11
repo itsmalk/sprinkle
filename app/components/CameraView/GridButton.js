@@ -12,8 +12,8 @@ import { Images } from '@/constants';
 const styles = StyleSheet.create({
   button: {
     position: 'absolute',
-    bottom: 11,
-    left: 16,
+    bottom: 10,
+    left: 10,
   },
   img: {
     backgroundColor: 'transparent',

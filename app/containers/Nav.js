@@ -13,6 +13,14 @@ const mapStateToProps = state => ({
   rehydrated: state.ui.rehydrated
 });
 
+const transparentScene = (props, computedProps) => {
+  const style = {
+    flex: 1,
+    backgroundColor: 'transparent',
+  };
+  return style;
+};
+
 @connect(mapStateToProps)
 class Nav extends Component {
   render() {
@@ -22,7 +30,7 @@ class Nav extends Component {
           <Scene key="modal" component={Modal}>
             <Scene key="root" hideNavBar>
               <Scene key="map" component={MapView} initial direction="vertical" />
-              <Scene key="post" component={CameraView} direction="vertical" schema="modal" />
+              <Scene key="post" component={CameraView} direction="vertical" schema="modal" getSceneStyle={transparentScene} />
               <Scene key="dish" component={Dish} />
             </Scene>
           </Scene>
