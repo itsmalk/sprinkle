@@ -28,7 +28,7 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>sammy-yousifs-macbook-pro.local</key>
+			<key>Christophers-MacBook-Pro.local</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>

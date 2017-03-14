@@ -19,7 +19,7 @@
   NSURL *jsCodeLocation;
 
 #if RCT_DEV
-  jsCodeLocation = [NSURL URLWithString:@"http://sammy-yousifs-macbook-pro.local:8081/index.ios.bundle?platform=ios&dev=true&minify=false"];
+  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true&minify=false"];
 #else
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
 #endif
