@@ -8,7 +8,6 @@ import { Colors } from '@/constants';
 
 const styles = StyleSheet.create({
   btn: {
-    height: 120,
     aspectRatio: 1,
     marginRight: 1,
     backgroundColor: Colors.LIGHT_BLACK,

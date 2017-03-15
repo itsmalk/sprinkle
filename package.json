@@ -23,10 +23,12 @@
 		"react-native-router-flux": "^3.37.0",
 		"react-redux": "^5.0.2",
 		"redux": "^3.6.0",
+		"redux-observable": "^0.14.1",
 		"redux-persist": "^4.4.1",
 		"redux-persist-transform-immutable": "^4.2.0",
 		"redux-thunk": "^2.2.0",
-		"reselect": "^2.5.4"
+		"reselect": "^2.5.4",
+		"rxjs": "5"
 	},
 	"devDependencies": {
 		"babel-eslint": "^7.1.1",

@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Colors } from '@/constants';
+import { BlurView } from 'react-native-blur';
 import Camera from 'react-native-camera';
 import CameraRoll from '@/components/CameraView/CameraRoll';
 import GridButton from '@/components/CameraView/GridButton';
@@ -19,14 +20,19 @@ var {width} = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.LIGHT_BLACK,
+    paddingTop: 20,
+    backgroundColor: 'transparent',
   },
   preview: {
     width: width,
     aspectRatio: 1,
   },
+  previewBorder: {
+    height: 1,
+    backgroundColor: Colors.BLACK,
+  },
   actions: {
-    flex: 1,
+    paddingVertical: 25,
     justifyContent: 'center',
     alignItems: 'center',
   }
@@ -46,7 +52,8 @@ class CameraView extends Component {
   }
   render() {
     return (
-      <View style={styles.container}>
+      <BlurView blurType="light" blurAmount={10} style={styles.container}>
+        <View style={styles.previewBorder} />
         <Camera
           ref={(cam) => {
             this.camera = cam;
@@ -61,6 +68,7 @@ class CameraView extends Component {
           <GridButton />
           <FlashButton />
         </Camera>
+        <View style={styles.previewBorder} />
         <CameraRoll />
         <View style={styles.actions}>
           <NextButton />
@@ -68,7 +76,7 @@ class CameraView extends Component {
             capture={this._takePhoto}
           />
         </View>
-      </View>
+      </BlurView>
     )
   }
 }
