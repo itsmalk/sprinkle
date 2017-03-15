@@ -7,6 +7,7 @@ import {
   Image,
 } from 'react-native';
 import { Images } from '@/constants';
+import { setSortResultsByRating } from '@/actions/ui';
 
 const styles = StyleSheet.create({
   button: {
@@ -19,15 +20,33 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = state => ({
+  sortResultsByRating: state.ui.sortResultsByRating
+})
+
+const mapDispatchToProps = {
+  setSortResultsByRating
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 class RatingsButton extends Component {
+  _onPress = () => {
+    const {
+      sortResultsByRating
+    } = this.props;
+    this.props.setSortResultsByRating(!sortResultsByRating)
+  }
   render() {
+    const source = this.props.sortResultsByRating
+      ? Images.RATINGS.ON
+      : Images.RATINGS.OFF
     return (
       <TouchableOpacity
         style={styles.button}
-        onPress={this._pushPostView}
+        onPress={this._onPress}
       >
         <Image
-          source={Images.RATINGS.ON}
+          source={source}
           style={styles.img}
         />
       </TouchableOpacity>
