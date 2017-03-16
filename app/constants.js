@@ -10,6 +10,13 @@ export const Colors = {
   GREEN_SPRINKLE: '#92DA7D',
 }
 
+export const PRICE_RANGE = {
+  LOW: 0,
+  MEDIUM: 1,
+  HIGH: 2,
+  OFF: 3,
+}
+
 export const Images = {
   CAM_BTN: require('@/assets/images/camButton/camButton.png'),
   PREV_PAGE_BTN: require('@/assets/images/previousPage/previousPage.png'),

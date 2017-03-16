@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import * as Actions from '@/actions/ui';
+import { SORT_BY, PRICE_RANGE } from '@/constants';
 
 function rehydrated(state = false, action = {}) {
   if (action.type === Actions.SET_REHYDRATED) {
@@ -15,7 +16,23 @@ function showSearchResults(state = false, action = {}) {
   return state;
 }
 
+function sortResultsByRating(state = true, action = {}) {
+  if (action.type === Actions.SET_SORT_RESULTS_BY_RATING) {
+    return action.payload;
+  }
+  return state;
+}
+
+function priceRange(state = PRICE_RANGE.OFF, action = {}) {
+  if (action.type === Actions.SET_PRICE_RANGE) {
+    return action.payload;
+  }
+  return state;
+}
+
 export default combineReducers({
   rehydrated,
-  showSearchResults
+  showSearchResults,
+  sortResultsByRating,
+  priceRange,
 })
