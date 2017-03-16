@@ -13,30 +13,30 @@ import { Images } from '@/constants';
 const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
+    alignSelf: 'stretch'
   },
   img: {
-    flex: 1,
-    padding: 4,
-    marginLeft: 7,
-    marginTop: 4,
-    width: null,
-    height: null,
+    marginLeft: 6,
+    marginTop: 7,
+    marginBottom: 4,
+    marginRight: 4,
+    width: 14,
+    height: 14,
     resizeMode: 'contain'
   },
   text: {
-    flex: 1,
-    padding: 2,
+    marginTop: 4,
     marginRight: 5,
     marginLeft: 2,
+    marginBottom: 1,
     color: '#FFFFFF',
     fontWeight: 'bold',
   },
   view: {
+    flex: 1,
+    height: 25,
     position: 'absolute',
     borderTopLeftRadius: 5,
-    flex: 1,
-    height: 24,
-    width: 40,
     bottom: 0,
     right: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.7)',

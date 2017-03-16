@@ -15,28 +15,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   img: {
-    flex: 1,
-    padding: 4,
-    marginBottom: 1,
-    marginLeft: 5,
-    marginTop: 2,
-    width: null,
-    height: null,
+    marginLeft: 6,
+    marginTop: 5,
+    marginBottom: 2,
+    width: 14,
+    height: 14,
     resizeMode: 'contain'
   },
   text: {
-    padding: 2,
-    marginRight: 5,
-    marginLeft: 2,
-    marginTop: 2,
+    marginTop: 4,
+    marginRight: 7,
+    marginLeft: 4,
     color: '#FFFFFF',
     fontWeight: 'bold',
   },
   view: {
+    flex: 1,
     position: 'absolute',
     borderBottomRightRadius: 5,
-    height: 24,
-    width: 40,
+    height: 25,
     top: 0,
     left: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
@@ -53,7 +50,7 @@ class ResultsRatingsButton extends Component {
           source={Images.RSLTS_RATINGS}
           style={styles.img}
           />
-          <Text style={styles.text}>1</Text>
+          <Text style={styles.text}>3.5</Text>
         </TouchableOpacity>
       </View>
     )

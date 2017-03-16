@@ -11,14 +11,15 @@ import {
 const styles = StyleSheet.create({
   text: {
     padding: 3,
+    paddingLeft: 6,
     color: '#FFFFFF',
     fontWeight: 'bold',
   },
   view: {
+    flex: 1,
     position: 'absolute',
     borderBottomLeftRadius: 5,
-    height: 24,
-    width: 55,
+    height: 25,
     top: 0,
     right: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
