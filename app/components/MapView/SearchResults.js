@@ -5,18 +5,12 @@ import {
   View,
   Dimensions,
   Animated,
-  Image,
-  Text,
   ListView,
-  TouchableOpacity,
 } from 'react-native';
-import { Colors } from '@/constants';
 import { BlurView } from 'react-native-blur';
-import { Actions } from 'react-native-router-flux';
+import RenderedItem from '@/components/MapView/RenderedItem';
 
-const { width, height } = Dimensions.get('window');
-const itemWidth = (width - 45) / 2;
-
+const { height } = Dimensions.get('window');
 const yDelta = height - 105
 
 const styles = StyleSheet.create({
@@ -41,27 +35,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   content: {
+    paddingTop: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-start',
-  },
-  item: {
-    width: itemWidth,
-    margin: 7.5,
-    borderRadius: 10,
-    aspectRatio: 1,
-  },
-  text: {
-    padding: 1,
-    marginBottom: 1,
-    fontSize: 12,
-    flexWrap: 'wrap',
-    alignSelf: 'center',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    color: Colors.WHITE,
-    maxWidth: itemWidth,
   }
 });
 
@@ -89,10 +66,6 @@ class Search extends Component {
     this._animateResults(prevProps.showSearchResults)
   }
 
-  _pushDishView = () => {
-    Actions.dish({text: 'Dish'})
-  }
-
   _animateResults = (prevProp) => {
     const showSearchResults = this.props.showSearchResults;
     if (prevProp !== showSearchResults) {
@@ -109,17 +82,7 @@ class Search extends Component {
 
   _renderItem = (item) => {
     return (
-      <TouchableOpacity onPress={this._pushDishView}>
-        <View style={styles.item} key={item}>
-            <Image source={{uri: 'https://unsplash.it/300/300?random'}}
-               style={styles.item} >
-               <View>
-                 <Text style={styles.text}>Austin's Famous Pizza</Text>
-                 <Text style={styles.text}>$4.99</Text>
-               </View>
-             </Image>
-        </View>
-      </TouchableOpacity>
+      <RenderedItem />
     )
   }
 
