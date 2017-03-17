@@ -31,7 +31,7 @@ class Nav extends Component {
             <Scene key="root" hideNavBar>
               <Scene key="map" component={MapView} initial direction="vertical" />
               <Scene key="post" component={CameraView} direction="vertical" schema="modal" getSceneStyle={transparentScene} />
-              <Scene key="dish" component={Dish} />
+              <Scene key="dish" component={Dish} direction="vertical" />
             </Scene>
           </Scene>
         </ReduxRouter>

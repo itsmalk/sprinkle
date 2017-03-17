@@ -47,4 +47,7 @@ export const Images = {
     ON: require('@/assets/images/ratings/ratings.png'),
     OFF: require('@/assets/images/ratings/ratingsDim.png'),
   },
+  RSLTS_FAVORITES: require('@/assets/images/resultsFavorites/favorites.png'),
+  RSLTS_LOCATION: require('@/assets/images/resultsLocation/location.png'),
+  RSLTS_RATINGS: require('@/assets/images/resultsRatings/star.png'),
 }
