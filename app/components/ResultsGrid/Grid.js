@@ -8,7 +8,7 @@ import {
   ListView,
 } from 'react-native';
 import { BlurView } from 'react-native-blur';
-import RenderedItem from '@/components/MapView/RenderedItem';
+import Item from '@/components/ResultsGrid/Item';
 
 const { height } = Dimensions.get('window');
 const yDelta = height - 105
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   content: {
+    padding: 7.5,
     paddingTop: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -56,7 +57,7 @@ const mapStateToProps = state => ({
 })
 
 @connect(mapStateToProps)
-class Search extends Component {
+export default class ResultsGrid extends Component {
   state = {
     translateY: new Animated.Value(yDelta),
     dataSource: ds.cloneWithRows(dataSource),
@@ -82,7 +83,7 @@ class Search extends Component {
 
   _renderItem = (item) => {
     return (
-      <RenderedItem />
+      <Item />
     )
   }
 
@@ -111,5 +112,3 @@ class Search extends Component {
     )
   }
 }
-
-export default Search;

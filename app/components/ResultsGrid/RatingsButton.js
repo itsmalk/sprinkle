@@ -11,33 +11,29 @@ import {
 import { Images } from '@/constants';
 
 const styles = StyleSheet.create({
-  button: {
-    flexDirection: 'row',
-  },
-  img: {
-    marginLeft: 6,
-    marginTop: 5,
-    marginBottom: 2,
-    width: 14,
-    height: 14,
-    resizeMode: 'contain'
-  },
-  text: {
-    marginTop: 4,
-    marginRight: 7,
-    marginLeft: 4,
-    color: '#FFFFFF',
-    fontWeight: 'bold',
-  },
   view: {
-    flex: 1,
     position: 'absolute',
-    borderBottomRightRadius: 5,
-    height: 25,
     top: 0,
     left: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-  }
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    borderBottomRightRadius: 5,
+  },
+  btn: {
+    flexDirection: 'row',
+    height: 24,
+    paddingRight: 8,
+    paddingLeft: 7,
+    alignItems: 'center',
+    paddingBottom: 0.5,
+  },
+  img: {
+    marginBottom: 0.5,
+  },
+  text: {
+    marginLeft: 6,
+    color: '#FFF',
+    fontWeight: 'bold',
+  },
 });
 
 class ResultsRatingsButton extends Component {
@@ -45,10 +41,11 @@ class ResultsRatingsButton extends Component {
     return (
       <View style={styles.view}>
         <TouchableOpacity
-        style={styles.button}>
+          style={styles.btn}
+        >
           <Image
-          source={Images.RSLTS_RATINGS}
-          style={styles.img}
+            style={styles.img}
+            source={Images.RSLTS_RATINGS}
           />
           <Text style={styles.text}>3.5</Text>
         </TouchableOpacity>

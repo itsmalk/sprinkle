@@ -11,34 +11,29 @@ import {
 import { Images } from '@/constants';
 
 const styles = StyleSheet.create({
-  button: {
-    flexDirection: 'row',
-    alignSelf: 'stretch',
-  },
-  img: {
-    marginLeft: 6,
-    marginTop: 5,
-    marginBottom: 2,
-    width: 14,
-    height: 14,
-    resizeMode: 'contain'
-  },
-  text: {
-    marginTop: 4,
-    marginRight: 7,
-    marginLeft: 3,
-    color: '#FFFFFF',
-    fontWeight: 'bold',
-  },
   view: {
-    flex: 1,
-    height: 25,
     position: 'absolute',
-    borderTopRightRadius: 5,
     bottom: 0,
     left: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-  }
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    borderTopRightRadius: 5,
+  },
+  btn: {
+    flexDirection: 'row',
+    height: 24,
+    paddingRight: 8,
+    paddingLeft: 9,
+    paddingTop: 0.5,
+    alignItems: 'center',
+  },
+  img: {
+    marginBottom: 0.5,
+  },
+  text: {
+    marginLeft: 7,
+    color: '#FFF',
+    fontWeight: '700',
+  },
 });
 
 class ResultsLocationButton extends Component {
@@ -46,10 +41,11 @@ class ResultsLocationButton extends Component {
     return (
       <View style={styles.view}>
         <TouchableOpacity
-        style={styles.button}>
+          style={styles.btn}
+        >
           <Image
-          source={Images.RSLTS_LOCATION}
-          style={styles.img}
+            source={Images.RSLTS_LOCATION}
+            style={styles.img}
           />
           <Text style={styles.text}>1</Text>
         </TouchableOpacity>

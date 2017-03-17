@@ -11,36 +11,29 @@ import {
 import { Images } from '@/constants';
 
 const styles = StyleSheet.create({
-  button: {
-    flexDirection: 'row',
-    alignSelf: 'stretch'
-  },
-  img: {
-    marginLeft: 6,
-    marginTop: 7,
-    marginBottom: 4,
-    marginRight: 4,
-    width: 14,
-    height: 14,
-    resizeMode: 'contain'
-  },
-  text: {
-    marginTop: 4,
-    marginRight: 5,
-    marginLeft: 2,
-    marginBottom: 1,
-    color: '#FFFFFF',
-    fontWeight: 'bold',
-  },
   view: {
-    flex: 1,
-    height: 25,
     position: 'absolute',
-    borderTopLeftRadius: 5,
     bottom: 0,
     right: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-  }
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    borderTopLeftRadius: 5,
+  },
+  btn: {
+    flexDirection: 'row',
+    height: 24,
+    paddingRight: 7,
+    paddingLeft: 9,
+    paddingTop: 0.5,
+    alignItems: 'center',
+  },
+  img: {
+    marginTop: 1,
+  },
+  text: {
+    marginLeft: 7,
+    color: '#FFF',
+    fontWeight: 'bold',
+  },
 });
 
 class ResultsFavoritesButton extends Component {
@@ -48,10 +41,11 @@ class ResultsFavoritesButton extends Component {
     return (
       <View style={styles.view}>
         <TouchableOpacity
-        style={styles.button}>
+          style={styles.btn}
+        >
           <Image
-          source={Images.RSLTS_FAVORITES}
-          style={styles.img}
+            style={styles.img}
+            source={Images.RSLTS_FAVORITES}
           />
           <Text style={styles.text}>1</Text>
         </TouchableOpacity>
