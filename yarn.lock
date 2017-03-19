@@ -3006,13 +3006,13 @@ lodash.templatesettings@^3.0.0:
     lodash._reinterpolate "^3.0.0"
     lodash.escape "^3.0.0"
 
+lodash@4.x.x, lodash@^4.0.0, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.6, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.6.1:
+  version "4.17.4"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
+
 lodash@^3.5.0:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
-
-lodash@^4.0.0, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.6, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.6.1:
-  version "4.17.4"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
 longest@^1.0.1:
   version "1.0.1"
@@ -3569,6 +3569,12 @@ react-native-maps@13.0.0:
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.13.0.tgz#f3d791a06d36d553bcc177514ee52fdea45474c0"
 
+react-native-navigation@next:
+  version "2.0.0-experimental.252"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.0.0-experimental.252.tgz#86a1846675287896e1b94cf25699b67092b40ab1"
+  dependencies:
+    lodash "4.x.x"
+
 react-native-permissions@^0.2.7:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-0.2.7.tgz#92eae05894ed99235707e20ecb8fbf7d765752ae"
@@ -3581,6 +3587,10 @@ react-native-router-flux@^3.37.0:
     react-native-experimental-navigation "0.26.x"
     react-native-tabs "^1.0.9"
     react-static-container "1.0.1"
+
+react-native-swiper@^1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/react-native-swiper/-/react-native-swiper-1.5.4.tgz#a85535b5374ef8d605a7a720e447ac46816ac448"
 
 react-native-tabs@^1.0.9:
   version "1.0.9"

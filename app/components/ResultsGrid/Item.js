@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     width: itemWidth,
     margin: 7.5,
     aspectRatio: 1,
+    backgroundColor: '#000',
     shadowColor: Colors.BLACK,
     borderRadius: 4,
     shadowOffset: {

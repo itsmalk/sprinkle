@@ -6,12 +6,10 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Colors } from '@/constants';
-import { BlurView } from 'react-native-blur';
 import Camera from 'react-native-camera';
 import CameraRoll from '@/components/CameraView/CameraRoll';
 import GridButton from '@/components/CameraView/GridButton';
 import FlashButton from '@/components/CameraView/FlashButton';
-import NextButton from '@/components/CameraView/NextButton';
 import SnapButton from '@/components/CameraView/SnapButton';
 import { appendCameraRoll } from '@/actions/camera';
 
@@ -52,7 +50,7 @@ class CameraView extends Component {
   }
   render() {
     return (
-      <BlurView blurType="light" blurAmount={10} style={styles.container}>
+      <View style={styles.container}>
         <View style={styles.previewBorder} />
         <Camera
           ref={(cam) => {
@@ -71,12 +69,11 @@ class CameraView extends Component {
         <View style={styles.previewBorder} />
         <CameraRoll />
         <View style={styles.actions}>
-          <NextButton />
           <SnapButton
             capture={this._takePhoto}
           />
         </View>
-      </BlurView>
+      </View>
     )
   }
 }

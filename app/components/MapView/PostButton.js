@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import {
   StyleSheet,
-  View,
   TouchableOpacity,
   Image,
 } from 'react-native';

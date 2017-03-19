@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 import {
   StyleSheet,
-  View,
   TouchableOpacity,
   Image,
 } from 'react-native';
@@ -12,20 +9,27 @@ import { Images } from '@/constants';
 const styles = StyleSheet.create({
   button: {
     position: 'absolute',
-    bottom: 12,
-    right: 9,
+    top: 0,
+    right: 0,
+    bottom: 0,
+    width: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   img: {
-    backgroundColor: 'transparent',
+    backgroundColor: '#000',
   }
 });
 
-class CameraNextButton extends Component {
+class NextButton extends Component {
+  _onPress = () => {
+    this.props.navigator.dismissModal()
+  }
   render() {
     return (
       <TouchableOpacity
         style={styles.button}
-        onPress={this._pushPostView}
+        onPress={this._onPress}
       >
         <Image
           source={Images.FORWARD_BTN}
@@ -36,4 +40,4 @@ class CameraNextButton extends Component {
   }
 }
 
-export default CameraNextButton;
+export default NextButton;

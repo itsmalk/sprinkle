@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import * as Actions from '@/actions/ui';
-import { SORT_BY, PRICE_RANGE } from '@/constants';
+import { PRICE_RANGE } from '@/constants';
 
 function rehydrated(state = false, action = {}) {
   if (action.type === Actions.SET_REHYDRATED) {

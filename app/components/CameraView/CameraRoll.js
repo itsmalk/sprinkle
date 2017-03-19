@@ -10,14 +10,15 @@ import { Colors } from '@/constants';
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 5,
-    flex: 1,
-    paddingVertical: 1,
-    backgroundColor: Colors.BLACK,
+    height: PhotoCheckbox.height + 10,
+    backgroundColor: 'transparent',
   },
   list: {
     flex: 1,
   },
+  content: {
+    padding: 2.5,
+  }
 })
 
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -53,9 +54,11 @@ class CameraRoll extends Component {
       <View style={styles.container}>
         <ListView
           style={styles.list}
+          contentContainerStyle={styles.content}
+          showsHorizontalScrollIndicator={false}
+          horizontal
           dataSource={this.state.dataSource}
           renderRow={this._renderRow}
-          horizontal
         />
       </View>
     )
