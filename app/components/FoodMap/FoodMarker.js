@@ -4,6 +4,7 @@ import {
   View,
   Text,
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import MapView from 'react-native-maps'
 import { Colors } from '@/constants';
 
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
 
 export default class FoodMarker extends Component {
   _onPress = () => {
-    console.log(this.props.marker.id)
+    Actions.dish()
   }
   render() {
     const { marker } = this.props;

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import MapView from '@/containers/MapView';
 import Post from '@/containers/Post';
 import Dish from '@/containers/Dish';
+import Dishes from '@/containers/Dishes';
 
 const ReduxRouter = connect()(Router);
 
@@ -16,6 +17,7 @@ const transparentScene = (props, computedProps) => {
   const style = {
     flex: 1,
     backgroundColor: 'transparent',
+    opacity: 1,
   };
   return style;
 };
@@ -36,7 +38,24 @@ class Nav extends Component {
                 schema="modal"
                 getSceneStyle={transparentScene}
               />
-              <Scene key="dish" component={Dish} direction="vertical" />
+              <Scene
+                key="dish"
+                direction="vertical"
+                getSceneStyle={transparentScene}
+                hideNavBar
+              >
+                <Scene
+                  key="dishRoot"
+                  component={Dish}
+                  initial
+                  getSceneStyle={transparentScene}
+                />
+                <Scene
+                  key="dishes"
+                  component={Dishes}
+                  getSceneStyle={transparentScene}
+                />
+              </Scene>
             </Scene>
           </Scene>
         </ReduxRouter>

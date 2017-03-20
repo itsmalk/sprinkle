@@ -1,37 +1,36 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
-  View,
   TouchableOpacity,
+  Text,
 } from 'react-native';
+import { BlurView } from 'react-native-blur';
 import { Colors } from '@/constants';
 import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.WHITE,
-    alignItems: 'center',
+    backgroundColor: 'transparent',
     justifyContent: 'center',
+    alignItems: 'center',
   }
 });
 
 
 class Dish extends Component {
 
-  _pop = () => {
-    Actions.pop()
+  _pushDishes = () => {
+    Actions.dishes()
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>{this.props.text}</Text>
-        <TouchableOpacity onPress={this._pop}>
-          <Text style={{color: 'blue'}}>I'm scared -- take me back</Text>
+      <BlurView blurType="xlight" blurAmount={10} style={styles.container}>
+        <TouchableOpacity onPress={this._pushDishes}>
+          <Text>Show Dishes</Text>
         </TouchableOpacity>
-      </View>
+      </BlurView>
     )
   }
 }
