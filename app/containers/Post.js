@@ -1,36 +1,53 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  View,
+  Dimensions,
 } from 'react-native';
 import { BlurView } from 'react-native-blur';
 import Swiper from 'react-native-swiper';
-import CameraView from '@/containers/CameraView';
+import ViewFinder from '@/components/Post/ViewFinder';
+import Form from '@/components/Post/Form';
+import CameraControls from '@/components/Post/CameraControls';
+import CameraRoll from '@/components/Post/CameraRoll';
+
+const { height, width } = Dimensions.get('window')
+const swiperHeight = height - (20 + width + CameraRoll.height)
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'transparent',
+    paddingTop: 20,
   },
 });
 
 class Post extends Component {
-  static navigatorStyle = {
-    navBarHidden: true,
-    screenBackgroundColor: 'transparent',
-    modalPresentationStyle: 'overCurrentContext',
+  _capture = () => {
+    this._viewFinder.capture()
   }
 
+  _setViewFinderRef = ref => {
+    if (ref) {
+      this._viewFinder = ref.getWrappedInstance()
+    }
+  }
   render() {
     return (
       <BlurView blurType="xlight" blurAmount={10} style={styles.container}>
+        <ViewFinder
+          ref={this._setViewFinderRef}
+        />
+        <CameraRoll />
         <Swiper
           showsPagination={false}
+          height={swiperHeight}
           loop={false}
-          bounces={true}
+          bounces
         >
-          <CameraView />
-          <View style={styles.container} />
+          <CameraControls
+            capture={this._capture}
+          />
+          <Form />
         </Swiper>
       </BlurView>
     )

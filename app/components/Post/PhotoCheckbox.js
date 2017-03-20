@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   TouchableOpacity,
   Image,
@@ -7,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import { Colors } from '@/constants';
+import { setSelectedPhoto } from '@/actions/camera';
 
 const { width } = Dimensions.get('window');
 const perRow = 4
@@ -18,7 +20,7 @@ const styles = StyleSheet.create({
     margin: 2.5,
     aspectRatio: 1,
     borderRadius: 4,
-    backgroundColor: Colors.LIGHT_BLACK,
+    backgroundColor: Colors.BLACK,
     shadowColor: Colors.BLACK,
     shadowOffset: {
       height: 1,
@@ -36,21 +38,56 @@ const styles = StyleSheet.create({
   },
   img: {
     flex: 1,
+  },
+  dimmed: {
+    opacity: 0.4,
   }
 })
 
+const mapStateToProps = state => ({
+  selectedPhoto: state.camera.selectedPhoto
+})
+
+const mapDispatchToProps = {
+  setSelectedPhoto
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 class PhotoCheckbox extends Component {
   static height = itemWidth
+
+  _setSelectedPhoto = () => {
+    const {
+      selectedPhoto,
+      image,
+    } = this.props;
+    if (!selectedPhoto || (selectedPhoto.uri !== image.uri)) {
+      this.props.setSelectedPhoto(image);
+    }
+    else {
+      this.props.setSelectedPhoto(null);
+    }
+  }
+
   render() {
+    const {
+      selectedPhoto,
+      image,
+    } = this.props;
+    const dimmed = (selectedPhoto && (selectedPhoto.uri !== image.uri))
+    const img = dimmed
+      ? [styles.img, styles.dimmed]
+      : styles.img
     return (
       <TouchableOpacity
         style={styles.btn}
         activeOpacity={0.5}
+        onPress={this._setSelectedPhoto}
       >
         <View style={styles.content}>
           <Image
             source={this.props.image}
-            style={styles.img}
+            style={img}
           />
         </View>
       </TouchableOpacity>

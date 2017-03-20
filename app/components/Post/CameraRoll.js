@@ -5,8 +5,10 @@ import {
   StyleSheet,
   ListView,
 } from 'react-native';
-import PhotoCheckbox from '@/components/CameraView/PhotoCheckbox';
+import PhotoCheckbox from '@/components/Post/PhotoCheckbox';
 import { Colors } from '@/constants';
+
+const height = PhotoCheckbox.height + 10
 
 const styles = StyleSheet.create({
   container: {
@@ -14,10 +16,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   list: {
-    flex: 1,
+    height: height,
   },
   content: {
     padding: 2.5,
+    height: height,
   }
 })
 
@@ -29,6 +32,7 @@ const mapStateToProps = state => ({
 
 @connect(mapStateToProps)
 class CameraRoll extends Component {
+  static height = height
   constructor(props) {
     super();
     this.state = {
@@ -36,11 +40,31 @@ class CameraRoll extends Component {
     };
   }
 
+  componentDidMount() {
+    this._scollToEnd({
+      animated: false,
+    })
+  }
+
   componentWillReceiveProps(nextProps) {
     this.setState({
       dataSource: ds.cloneWithRows(nextProps.cameraRoll),
     })
   }
+
+  componentDidUpdate() {
+    this._scollToEnd()
+  }
+
+  _scollToEnd = (config) => {
+    if (this.props.cameraRoll.length) {
+      requestAnimationFrame(() => {
+        this._list.scrollToEnd(config)
+      })
+    }
+  }
+
+  _setListRef = ref => { this._list = ref }
 
   _renderRow = (image) => {
     return <PhotoCheckbox image={image} />
@@ -53,12 +77,16 @@ class CameraRoll extends Component {
     return (
       <View style={styles.container}>
         <ListView
+          ref={this._setListRef}
           style={styles.list}
           contentContainerStyle={styles.content}
           showsHorizontalScrollIndicator={false}
           horizontal
           dataSource={this.state.dataSource}
           renderRow={this._renderRow}
+          pageSize={10}
+          initialListSize={1}
+          removeClippedSubviews={false}
         />
       </View>
     )
