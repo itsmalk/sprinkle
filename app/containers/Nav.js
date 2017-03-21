@@ -30,32 +30,27 @@ class Nav extends Component {
         <ReduxRouter>
           <Scene key="modal" component={Modal}>
             <Scene key="root" hideNavBar>
-              <Scene key="map" component={MapView} initial direction="vertical" />
-              <Scene
-                key="post"
-                component={Post}
-                direction="vertical"
-                schema="modal"
-                getSceneStyle={transparentScene}
-              />
-              <Scene
-                key="dish"
-                direction="vertical"
-                getSceneStyle={transparentScene}
-                hideNavBar
-              >
+              <Scene key="start" hideNavBar>
+                <Scene key="map" component={MapView} initial direction="vertical" />
                 <Scene
-                  key="dishRoot"
-                  component={Dish}
-                  initial
+                  key="post"
+                  component={Post}
+                  direction="vertical"
+                  schema="modal"
                   getSceneStyle={transparentScene}
                 />
                 <Scene
-                  key="dishes"
-                  component={Dishes}
+                  key="dish"
+                  component={Dish}
                   getSceneStyle={transparentScene}
+                  direction="vertical"
                 />
               </Scene>
+              <Scene
+                key="dishes"
+                component={Dishes}
+                getSceneStyle={transparentScene}
+              />
             </Scene>
           </Scene>
         </ReduxRouter>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  PanResponder,
   ScrollView,
   View,
 } from 'react-native';
@@ -26,16 +25,6 @@ const styles = StyleSheet.create({
 
 
 class Dishes extends Component {
-  componentWillMount() {
-    this._contentPanResponder = PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onStartShouldSetPanResponderCapture: () => true,
-      onMoveShouldSetPanResponderCapture: () => true,
-      onMoveShouldSetPanResponder: () => true,
-      onPanResponderTerminationRequest: () => false, 
-    });
-  }
-
   render() {
     return (
       <BlurView
@@ -48,23 +37,10 @@ class Dishes extends Component {
         >
           <View
             style={styles.content}
-            {...this._contentPanResponder.panHandlers}
           />
         </ScrollView>
       </BlurView>
     )
-  }
-
-  _handleStartShouldSetPanResponder = () => {
-    return true
-  }
-
-  _handleMoveShouldSetPanResponder = () => {
-    return true;
-  }
-
-  _handlePanResponderRequestEnd = () => {
-    return false;
   }
 }
 
