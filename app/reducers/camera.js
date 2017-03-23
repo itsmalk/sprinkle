@@ -1,21 +1,20 @@
-import { combineReducers } from 'redux';
+import Immutable from 'immutable';
 import * as Actions from '@/actions/camera';
 
-function cameraRoll(state = [], action = {}) {
-  if (action.type === Actions.APPEND_CAMERA_ROLL) {
-    return [...state, action.payload];
+export function cameraRoll(state = Immutable.List(), action = {}) {
+  switch (action.type) {
+    case Actions.SET_CAMERA_ROLL:
+      return Immutable.List(action.payload)
+    case Actions.APPEND_CAMERA_ROLL:
+      return state.push(action.payload)
+    default:
+      return state;
   }
-  return state;
 }
 
-function selectedPhoto(state = null, action = {}) {
+export function selectedPhoto(state = null, action = {}) {
   if (action.type === Actions.SET_SELECTED_PHOTO) {
     return action.payload;
   }
   return state;
 }
-
-export default combineReducers({
-  cameraRoll,
-  selectedPhoto,
-})

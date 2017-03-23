@@ -20,18 +20,18 @@ var {width} = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'transparent',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
+    borderTopWidth: 0.5,
+    borderBottomWidth: 0.5,
     borderColor: Colors.BLACK,
   },
   preview: {
     width: width,
-    aspectRatio: 1,
+    height: width,
   },
 });
 
 const mapStateToProps = state => ({
-  selectedPhoto: state.camera.selectedPhoto
+  selectedPhoto: state.selectedPhoto
 })
 
 const mapDispatchToProps = {
@@ -47,7 +47,7 @@ class ViewFinder extends Component {
       return
     }
     const img = await this._camera.capture();
-    this.props.appendCameraRoll({
+    this.props.setSelectedPhoto({
       uri: img.path
     });
   }

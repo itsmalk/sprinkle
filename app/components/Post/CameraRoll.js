@@ -3,86 +3,104 @@ import { connect } from 'react-redux';
 import {
   View,
   StyleSheet,
-  ListView,
+  CameraRoll,
 } from 'react-native';
+import Permissions from 'react-native-permissions';
+import ImmutableListView from 'react-native-immutable-list-view';
 import PhotoCheckbox from '@/components/Post/PhotoCheckbox';
-import { Colors } from '@/constants';
-
-const height = PhotoCheckbox.height + 10
+import PhotoPermissions from '@/components/Post/PhotoPermissions';
+import { setCameraRoll, appendCameraRoll } from '@/actions/camera';
+import { setPhotoAccess, setPhotoAccessChecked } from '@/actions/ui';
 
 const styles = StyleSheet.create({
   container: {
-    height: PhotoCheckbox.height + 10,
+    flex: 1,
     backgroundColor: 'transparent',
   },
   list: {
-    height: height,
+    flex: 1,
   },
   content: {
     padding: 2.5,
-    height: height,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
   }
 })
 
-const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-
 const mapStateToProps = state => ({
-  cameraRoll: state.camera.cameraRoll
+  photoAccessChecked: state.ui.photoAccessChecked,
+  photoAccess: state.ui.photoAccess,
+  cameraRoll: state.cameraRoll
 })
 
-@connect(mapStateToProps)
-class CameraRoll extends Component {
-  static height = height
-  constructor(props) {
-    super();
-    this.state = {
-      dataSource: ds.cloneWithRows(props.cameraRoll),
-    };
+const mapDispatchToProps = {
+  setCameraRoll,
+  appendCameraRoll,
+  setPhotoAccess,
+  setPhotoAccessChecked,
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
+class Roll extends Component {
+  componentWillMount() {
+    this.props.setPhotoAccessChecked(false)
   }
 
   componentDidMount() {
-    this._scollToEnd({
-      animated: false,
-    })
+    setTimeout(() => {
+      Permissions.getPermissionStatus('photo')
+        .then(response => {
+          if (response === 'authorized') {
+            this.props.setPhotoAccess(true)
+          }
+          this.props.setPhotoAccessChecked(true)
+        });
+    }, 450)
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      dataSource: ds.cloneWithRows(nextProps.cameraRoll),
-    })
+  componentDidUpdate(prevProps) {
+    this._fetchCameraRoll(prevProps)
   }
 
-  componentDidUpdate() {
-    this._scollToEnd()
-  }
-
-  _scollToEnd = (config) => {
-    if (this.props.cameraRoll.length) {
-      requestAnimationFrame(() => {
-        this._list.scrollToEnd(config)
-      })
+  _fetchCameraRoll = (previous) => {
+    if (!previous.photoAccess && this.props.photoAccess) {
+      const fetchParams = {
+        first: 24,
+      };
+      CameraRoll.getPhotos(fetchParams)
+        .then(this._storeImages)
+        .catch(this._logImageError)
     }
   }
 
-  _setListRef = ref => { this._list = ref }
+  _storeImages = data => {
+    const assets = data.edges;
+    const images = assets.map((asset) => asset.node.image);
+    this.props.setCameraRoll(images)
+  }
+
+  _logImageError = err => {
+    console.log(err);
+  }
 
   _renderRow = (image) => {
     return <PhotoCheckbox image={image} />
   }
 
   render() {
-    if (!this.props.cameraRoll.length){
+    if (!this.props.photoAccessChecked) {
       return <View style={styles.container} />
+    }
+    if (!this.props.photoAccess) {
+      return <PhotoPermissions />
     }
     return (
       <View style={styles.container}>
-        <ListView
-          ref={this._setListRef}
+        <ImmutableListView
+          immutableData={this.props.cameraRoll}
           style={styles.list}
           contentContainerStyle={styles.content}
-          showsHorizontalScrollIndicator={false}
-          horizontal
-          dataSource={this.state.dataSource}
           renderRow={this._renderRow}
           pageSize={10}
           initialListSize={1}
@@ -93,4 +111,4 @@ class CameraRoll extends Component {
   }
 }
 
-export default CameraRoll;
+export default Roll;

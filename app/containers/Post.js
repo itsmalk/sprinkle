@@ -11,7 +11,7 @@ import CameraControls from '@/components/Post/CameraControls';
 import CameraRoll from '@/components/Post/CameraRoll';
 
 const { height, width } = Dimensions.get('window')
-const swiperHeight = height - (20 + width + CameraRoll.height)
+const swiperHeight = height - (20 + width)
 
 const styles = StyleSheet.create({
   container: {
@@ -37,16 +37,17 @@ class Post extends Component {
         <ViewFinder
           ref={this._setViewFinderRef}
         />
-        <CameraRoll />
         <Swiper
           showsPagination={false}
           height={swiperHeight}
-          loop={false}
+          loop
           bounces
+          index={1}
         >
           <CameraControls
             capture={this._capture}
           />
+          <CameraRoll />
           <Form />
         </Swiper>
       </BlurView>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Router, Scene, Modal } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-
+import getPanHandlers from '@/lib/getPanHandlers'
 import MapView from '@/containers/MapView';
 import Post from '@/containers/Post';
 import Dish from '@/containers/Dish';
@@ -38,6 +38,7 @@ class Nav extends Component {
                   direction="vertical"
                   schema="modal"
                   getSceneStyle={transparentScene}
+                  getPanHandlers={getPanHandlers}
                 />
                 <Scene
                   key="dish"
@@ -50,6 +51,7 @@ class Nav extends Component {
                 key="dishes"
                 component={Dishes}
                 getSceneStyle={transparentScene}
+                getPanHandlers={getPanHandlers}
               />
             </Scene>
           </Scene>

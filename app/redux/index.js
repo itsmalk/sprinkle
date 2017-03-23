@@ -26,10 +26,10 @@ export default function configureStore() {
   const InitialState = {};
   const store = finalCreateStore(rootReducer, InitialState);
   persistStore(store, {
-    whitelist: ['user', 'menuItems', 'restaurants'],
+    whitelist: [],
     storage: AsyncStorage,
     transforms: [immutableTransform({
-      whitelist: ['menuItems', 'restaurants'],
+      whitelist: [],
     })],
   }, () => {
     store.dispatch(Actions.setRehydrated());

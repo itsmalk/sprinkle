@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
     backgroundColor: 'rgba(0,0,0,0.7)',
-    borderTopLeftRadius: 5,
+    borderTopLeftRadius: 3,
   },
   btn: {
     flexDirection: 'row',
@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
   text: {
     marginLeft: 7,
     color: '#FFF',
-    fontWeight: 'bold',
+    fontSize: 11,
+    fontWeight: '500',
   },
 });
 

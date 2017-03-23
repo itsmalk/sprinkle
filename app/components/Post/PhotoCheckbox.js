@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   btn: {
     width: itemWidth,
     margin: 2.5,
-    aspectRatio: 1,
+    height: itemWidth,
     borderRadius: 4,
     backgroundColor: Colors.BLACK,
     shadowColor: Colors.BLACK,
@@ -37,15 +37,13 @@ const styles = StyleSheet.create({
     borderColor: Colors.BLACK,
   },
   img: {
-    flex: 1,
+    width: itemWidth - 1,
+    height: itemWidth - 1,
   },
-  dimmed: {
-    opacity: 0.4,
-  }
 })
 
 const mapStateToProps = state => ({
-  selectedPhoto: state.camera.selectedPhoto
+  selectedPhoto: state.selectedPhoto
 })
 
 const mapDispatchToProps = {
@@ -71,13 +69,8 @@ class PhotoCheckbox extends Component {
 
   render() {
     const {
-      selectedPhoto,
       image,
     } = this.props;
-    const dimmed = (selectedPhoto && (selectedPhoto.uri !== image.uri))
-    const img = dimmed
-      ? [styles.img, styles.dimmed]
-      : styles.img
     return (
       <TouchableOpacity
         style={styles.btn}
@@ -86,8 +79,8 @@ class PhotoCheckbox extends Component {
       >
         <View style={styles.content}>
           <Image
-            source={this.props.image}
-            style={img}
+            source={image}
+            style={styles.img}
           />
         </View>
       </TouchableOpacity>
