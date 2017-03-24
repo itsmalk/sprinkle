@@ -30,11 +30,15 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapStateToProps = state => ({
+  swiperIndex: state.ui.post.swiperIndex
+})
+
 const mapDispatchToProps = {
   setSwiperIndex
 }
 
-@connect(null, mapDispatchToProps)
+@connect(mapStateToProps, mapDispatchToProps)
 export default class Post extends Component {
   _capture = () => {
     this._viewFinder.capture()
@@ -61,7 +65,7 @@ export default class Post extends Component {
           height={swiperHeight}
           loop
           bounces
-          index={1}
+          index={this.props.swiperIndex}
           onMomentumScrollEnd={this._onMomentumScrollEnd}
         >
           <View style={styles.page}>

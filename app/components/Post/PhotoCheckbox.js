@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import { Colors } from '@/constants';
-import { setSelectedPhoto } from '@/actions/camera';
+import { setSelectedPhoto } from '@/actions/post';
 
 const { width } = Dimensions.get('window');
 const perRow = 4
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
-  selectedPhoto: state.selectedPhoto
+  selectedPhoto: state.ui.post.selectedPhoto
 })
 
 const mapDispatchToProps = {
@@ -61,9 +61,6 @@ class PhotoCheckbox extends Component {
     } = this.props;
     if (!selectedPhoto || (selectedPhoto.uri !== image.uri)) {
       this.props.setSelectedPhoto(image);
-    }
-    else {
-      this.props.setSelectedPhoto(null);
     }
   }
 

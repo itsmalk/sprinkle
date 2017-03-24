@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
-  refreshing: state.ui.cameraRoll.refreshing,
+  showRefreshing: state.ui.cameraRoll.showRefreshing,
   render: state.ui.cameraRoll.render,
   accessGranted: photoAccessGranted(state),
   cameraRoll: state.cameraRoll,
@@ -61,12 +61,11 @@ class Roll extends Component {
   }
 
   _onRefresh = () => {
-    this.props.refresh()
+    this.props.refresh(true)
   }
 
   render() {
     if (!this.props.render) return null
-    const refreshing = !!(this.props.refreshing && this.props.cameraRoll.size)
     return (
       <View style={styles.container}>
         <ImmutableListView
@@ -79,7 +78,7 @@ class Roll extends Component {
           removeClippedSubviews={false}
           refreshControl={
             <RefreshControl
-              refreshing={refreshing}
+              refreshing={this.props.showRefreshing}
               onRefresh={this._onRefresh}
             />
           }

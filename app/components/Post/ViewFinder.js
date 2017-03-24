@@ -10,12 +10,15 @@ import { Colors } from '@/constants';
 import Camera from 'react-native-camera';
 import GridButton from '@/components/Post/GridButton';
 import FlashButton from '@/components/Post/FlashButton';
+import CropButton from '@/components/Post/CropButton';
+import { setSelectedPhoto } from '@/actions/post';
+import { renderCamera, selectedPhoto } from '@/selectors/viewFinder';
 
 var {width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'transparent',
+    backgroundColor: '#000',
     borderTopWidth: 0.5,
     borderBottomWidth: 0.5,
     borderColor: Colors.BLACK,
@@ -28,15 +31,27 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  swiperIndex: state.ui.post.swiperIndex,
-  selectedPhoto: state.ui.post.selectedPhoto,
+  renderCamera: renderCamera(state),
+  selectedPhoto: selectedPhoto(state),
 })
 
-@connect(mapStateToProps, null, null, { withRef: true })
+const mapDispatchToProps = {
+  setSelectedPhoto
+}
+
+@connect(mapStateToProps, mapDispatchToProps, null, { withRef: true })
 class ViewFinder extends Component {
   capture = async () => {
-    return
-    const img = await this._camera.capture();
+    if (this.props.renderCamera) {
+      const img = await this._camera.capture();
+      this.props.setSelectedPhoto({
+        uri: img.path,
+        src: 'camera'
+      })
+    }
+    else {
+      this.props.setSelectedPhoto(null)
+    }
   }
 
   _setCameraRef = ref => {
@@ -44,32 +59,29 @@ class ViewFinder extends Component {
   }
 
   _renderPreview = () => {
-    return (
-      <View style={styles.container}>
-        <View style={styles.preview} />
-      </View>
-    )
-    if (this.props.selectedPhoto) {
+    if (this.props.renderCamera) {
       return (
-        <Image
+        <Camera
+          ref={this._setCameraRef}
           style={styles.preview}
-          source={this.props.selectedPhoto}
-        />
+          aspect={Camera.constants.Aspect.fill}
+          captureAudio={false}
+          keepAwake
+          captureTarget={Camera.constants.CaptureTarget.disk}
+          orientation={Camera.constants.Orientation.portrait}
+        >
+          <GridButton />
+          <FlashButton />
+        </Camera>
       )
     }
     return (
-      <Camera
-        ref={this._setCameraRef}
+      <Image
         style={styles.preview}
-        aspect={Camera.constants.Aspect.fill}
-        captureAudio={false}
-        keepAwake
-        captureTarget={Camera.constants.CaptureTarget.disk}
-        orientation={Camera.constants.Orientation.portrait}
+        source={this.props.selectedPhoto}
       >
-        <GridButton />
-        <FlashButton />
-      </Camera>
+        <CropButton />
+      </Image>
     )
   }
 

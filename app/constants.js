@@ -33,6 +33,10 @@ export const Images = {
     ON: require('@/assets/images/grid/grid.png'),
     OFF: require('@/assets/images/grid/gridOff.png'),
   },
+  CROP: {
+    ON: require('@/assets/images/crop/crop.png'),
+    OFF: require('@/assets/images/crop/cropOff.png'),
+  },
   FORWARD_BTN: require('@/assets/images/forward/forward.png'),
   BACKWARD_BTN: require('@/assets/images/back/back.png'),
   COST: {
