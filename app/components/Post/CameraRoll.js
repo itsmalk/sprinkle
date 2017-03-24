@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import {
   View,
   StyleSheet,
-  RefreshControl,
 } from 'react-native';
 import ImmutableListView from 'react-native-immutable-list-view';
+import RNPhotosFramework from 'react-native-photos-framework';
 import PhotoCheckbox from '@/components/Post/PhotoCheckbox';
 import { photoAccessGranted } from '@/selectors/cameraRoll';
 import { setRender, refresh } from '@/actions/cameraRoll';
@@ -42,26 +42,36 @@ const mapDispatchToProps = {
 class Roll extends Component {
   componentDidMount() {
     if (this.props.accessGranted) {
-      setTimeout(() => {
-        this.props.setRender(true)
-        this.props.refresh()
-      }, 500)
+      setTimeout(this._displayPhotos, 450)
     }
   }
 
   componentDidUpdate(previous) {
     if (!previous.accessGranted && this.props.accessGranted) {
-      this.props.setRender(true)
-      this.props.refresh()
+      this._displayPhotos()
     }
+  }
+
+  componentWillUnmount() {
+    this._stopWatchingPhotos()
+  }
+
+  _displayPhotos = () => {
+    this.props.setRender(true)
+    this.props.refresh()
+    this._unwatchLibrary = RNPhotosFramework.onLibraryChange(() => {
+      this.props.refresh()
+    });
+  }
+
+  _stopWatchingPhotos = () => {
+    if (this._unwatchLibrary) this._unwatchLibrary.then(emitter => {
+      emitter.remove()
+    })
   }
 
   _renderRow = (image) => {
     return <PhotoCheckbox image={image} />
-  }
-
-  _onRefresh = () => {
-    this.props.refresh(true)
   }
 
   render() {
@@ -76,12 +86,6 @@ class Roll extends Component {
           pageSize={10}
           initialListSize={1}
           removeClippedSubviews={false}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.props.showRefreshing}
-              onRefresh={this._onRefresh}
-            />
-          }
         />
       </View>
     )

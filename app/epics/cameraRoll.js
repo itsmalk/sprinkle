@@ -24,8 +24,6 @@ const refresh = (action$, store) => action$.ofType(Actions.SET_REFRESHING)
   .filter(action => action.payload)
   .mergeMap(() => {
     const fetchParams = {
-      startIndex: 0,
-      endIndex: 500,
       fetchOptions: {
         mediaTypes: ['image'],
         sortDescriptors : [
@@ -39,7 +37,9 @@ const refresh = (action$, store) => action$.ofType(Actions.SET_REFRESHING)
     return RNPhotosFramework.getAssets(fetchParams)
   })
   .map(response => {
-    const images = response.assets.map(asset => ({ ...asset.image, src: 'photos' }))
+    const images = response.assets
+      .filter(asset => !!(asset && asset.image))
+      .map(asset => ({ ...asset.image, src: 'photos' }))
     return Actions.setCameraRoll(images)
   })
 
