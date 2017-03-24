@@ -22,6 +22,7 @@
 		"react-native-keyboard-spacer": "^0.3.1",
 		"react-native-maps": "13.0.0",
 		"react-native-permissions": "^0.2.7",
+		"react-native-photos-framework": "^1.0.1",
 		"react-native-router-flux": "^3.37.0",
 		"react-native-swiper": "^1.5.4",
 		"react-redux": "^5.0.2",

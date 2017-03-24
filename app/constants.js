@@ -8,6 +8,8 @@ export const Colors = {
   BLUE_SPRINKLE: '#7DDAD7',
   YELLOW_SPRINKLE: '#EBD36D',
   GREEN_SPRINKLE: '#92DA7D',
+  BTN_BLUE: '#157AFC',
+  TRANSPARENT_GRAY: '#C9C9C940',
 }
 
 export const PRICE_RANGE = {

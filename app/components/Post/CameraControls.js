@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   StyleSheet,
 } from 'react-native';
 import SnapButton from '@/components/Post/SnapButton';
+import { cameraAccessGranted } from '@/selectors/camera';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,12 +15,20 @@ const styles = StyleSheet.create({
   },
 });
 
-const CameraControls = ({ capture }) => (
-  <View style={styles.container}>
-    <SnapButton
-      capture={capture}
-    />
-  </View>
-)
+const mapStateToProps = state => ({
+  accessGranted: cameraAccessGranted(state),
+})
 
-export default CameraControls
+@connect(mapStateToProps)
+export default class CameraControls extends Component{
+  render() {
+    if (!this.props.accessGranted) return null
+    return (
+      <View style={styles.container}>
+        <SnapButton
+          capture={this.props.capture}
+        />
+      </View>
+    )
+  }
+}

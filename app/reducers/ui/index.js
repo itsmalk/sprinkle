@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux';
 import * as Actions from '@/actions/ui';
 import { PRICE_RANGE } from '@/constants';
+import cameraRoll from './cameraRoll'
+import camera from './camera'
+import post from './post'
 
 function rehydrated(state = false, action = {}) {
   if (action.type === Actions.SET_REHYDRATED) {
@@ -30,41 +33,12 @@ function priceRange(state = PRICE_RANGE.OFF, action = {}) {
   return state;
 }
 
-function photoAccessChecked(state = false, action = {}) {
-  if (action.type === Actions.SET_PHOTO_ACCESS_CHECKED) {
-    return action.payload;
-  }
-  return state;
-}
-
-function photoAccess(state = false, action = {}) {
-  if (action.type === Actions.SET_PHOTO_ACCESS) {
-    return action.payload;
-  }
-  return state;
-}
-
-function cameraAccessChecked(state = false, action = {}) {
-  if (action.type === Actions.SET_CAMERA_ACCESS_CHECKED) {
-    return action.payload;
-  }
-  return state;
-}
-
-function cameraAccess(state = false, action = {}) {
-  if (action.type === Actions.SET_CAMERA_ACCESS) {
-    return action.payload;
-  }
-  return state;
-}
-
 export default combineReducers({
   rehydrated,
   showSearchResults,
   sortResultsByRating,
   priceRange,
-  photoAccess,
-  cameraAccess,
-  photoAccessChecked,
-  cameraAccessChecked,
+  cameraRoll,
+  post,
+  camera,
 })

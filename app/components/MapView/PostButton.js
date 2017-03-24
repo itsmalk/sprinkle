@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import {
   StyleSheet,
@@ -6,6 +7,10 @@ import {
   Image,
 } from 'react-native';
 import { Images } from '@/constants';
+import Permissions from 'react-native-permissions';
+import { setRender } from '@/actions/cameraRoll';
+import { setPermission as setPhotoPermission } from '@/actions/cameraRoll'
+import { setPermission as setCameraPermission } from '@/actions/camera'
 
 const styles = StyleSheet.create({
   button: {
@@ -18,9 +23,22 @@ const styles = StyleSheet.create({
   }
 });
 
-class PostButton extends Component {
+const mapDispatchToProps = {
+  setRender,
+  setPhotoPermission,
+  setCameraPermission,
+}
+
+@connect(null, mapDispatchToProps)
+export default class PostButton extends Component {
   _pushPostView = () => {
-    Actions.post()
+    this.props.setRender(false)
+    Permissions.checkMultiplePermissions(['camera', 'photo'])
+      .then(response => {
+        this.props.setCameraPermission(response.camera)
+        this.props.setPhotoPermission(response.photo)
+        Actions.post()
+      });
   }
   render() {
     return (
@@ -36,5 +54,3 @@ class PostButton extends Component {
     )
   }
 }
-
-export default PostButton;

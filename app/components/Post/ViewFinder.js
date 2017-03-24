@@ -10,10 +10,6 @@ import { Colors } from '@/constants';
 import Camera from 'react-native-camera';
 import GridButton from '@/components/Post/GridButton';
 import FlashButton from '@/components/Post/FlashButton';
-import {
-  appendCameraRoll,
-  setSelectedPhoto,
-} from '@/actions/camera';
 
 var {width} = Dimensions.get('window');
 
@@ -27,29 +23,20 @@ const styles = StyleSheet.create({
   preview: {
     width: width,
     height: width,
+    backgroundColor: '#000',
   },
 });
 
 const mapStateToProps = state => ({
-  selectedPhoto: state.selectedPhoto
+  swiperIndex: state.ui.post.swiperIndex,
+  selectedPhoto: state.ui.post.selectedPhoto,
 })
 
-const mapDispatchToProps = {
-  setSelectedPhoto,
-  appendCameraRoll
-}
-
-@connect(mapStateToProps, mapDispatchToProps, null, { withRef: true })
+@connect(mapStateToProps, null, null, { withRef: true })
 class ViewFinder extends Component {
   capture = async () => {
-    if (this.props.selectedPhoto) {
-      this.props.setSelectedPhoto(null)
-      return
-    }
+    return
     const img = await this._camera.capture();
-    this.props.setSelectedPhoto({
-      uri: img.path
-    });
   }
 
   _setCameraRef = ref => {
@@ -57,6 +44,11 @@ class ViewFinder extends Component {
   }
 
   _renderPreview = () => {
+    return (
+      <View style={styles.container}>
+        <View style={styles.preview} />
+      </View>
+    )
     if (this.props.selectedPhoto) {
       return (
         <Image

@@ -28,35 +28,3 @@ export function setPriceRange(payload) {
     payload,
   };
 }
-
-export const SET_PHOTO_ACCESS_CHECKED = `${PREFIX}SET_PHOTO_ACCESS_CHECKED`;
-export function setPhotoAccessChecked(payload) {
-  return {
-    type: SET_PHOTO_ACCESS_CHECKED,
-    payload,
-  };
-}
-
-export const SET_PHOTO_ACCESS = `${PREFIX}SET_PHOTO_ACCESS`;
-export function setPhotoAccess(payload) {
-  return {
-    type: SET_PHOTO_ACCESS,
-    payload,
-  };
-}
-
-export const SET_CAMERA_ACCESS_CHECKED = `${PREFIX}SET_CAMERA_ACCESS_CHECKED`;
-export function setCameraAccessChecked(payload) {
-  return {
-    type: SET_CAMERA_ACCESS_CHECKED,
-    payload,
-  };
-}
-
-export const SET_CAMERA_ACCESS = `${PREFIX}SET_CAMERA_ACCESS`;
-export function setCameraAccess(payload) {
-  return {
-    type: SET_CAMERA_ACCESS,
-    payload,
-  };
-}

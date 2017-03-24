@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 import { Colors } from '@/constants';
 import Permissions from 'react-native-permissions';
-import { setPermission } from '@/actions/cameraRoll';
-import { photoAccessGranted } from '@/selectors/cameraRoll';
+import { setPermission } from '@/actions/camera';
+import { cameraAccessGranted } from '@/selectors/camera';
 
 const styles = StyleSheet.create({
   container: {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
-  accessGranted: photoAccessGranted(state),
+  accessGranted: cameraAccessGranted(state),
 })
 
 const mapDispatchToProps = {
@@ -43,13 +43,13 @@ const mapDispatchToProps = {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class PhotoPermissions extends Component {
+export default class CameraPermissions extends Component {
   _enable = async () => {
     try {
-      const status = await Permissions.getPermissionStatus('photo');
+      const status = await Permissions.getPermissionStatus('camera');
       switch (status) {
         case 'undetermined': {
-          const status = await Permissions.requestPermission('photo');
+          const status = await Permissions.requestPermission('camera');
           this.props.setPermission(status)
           break;
         }
@@ -74,7 +74,7 @@ export default class PhotoPermissions extends Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.btn} onPress={this._enable}>
-          <Text style={styles.text}>Enable Photo Access</Text>
+          <Text style={styles.text}>Enable Camera Access</Text>
         </TouchableOpacity>
       </View>
     )

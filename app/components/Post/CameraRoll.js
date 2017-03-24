@@ -3,14 +3,12 @@ import { connect } from 'react-redux';
 import {
   View,
   StyleSheet,
-  CameraRoll,
+  RefreshControl,
 } from 'react-native';
-import Permissions from 'react-native-permissions';
 import ImmutableListView from 'react-native-immutable-list-view';
 import PhotoCheckbox from '@/components/Post/PhotoCheckbox';
-import PhotoPermissions from '@/components/Post/PhotoPermissions';
-import { setCameraRoll, appendCameraRoll } from '@/actions/camera';
-import { setPhotoAccess, setPhotoAccessChecked } from '@/actions/ui';
+import { photoAccessGranted } from '@/selectors/cameraRoll';
+import { setRender, refresh } from '@/actions/cameraRoll';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,72 +27,46 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
-  photoAccessChecked: state.ui.photoAccessChecked,
-  photoAccess: state.ui.photoAccess,
-  cameraRoll: state.cameraRoll
+  refreshing: state.ui.cameraRoll.refreshing,
+  render: state.ui.cameraRoll.render,
+  accessGranted: photoAccessGranted(state),
+  cameraRoll: state.cameraRoll,
 })
 
 const mapDispatchToProps = {
-  setCameraRoll,
-  appendCameraRoll,
-  setPhotoAccess,
-  setPhotoAccessChecked,
+  setRender,
+  refresh,
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
 class Roll extends Component {
-  componentWillMount() {
-    this.props.setPhotoAccessChecked(false)
-  }
-
   componentDidMount() {
-    setTimeout(() => {
-      Permissions.getPermissionStatus('photo')
-        .then(response => {
-          if (response === 'authorized') {
-            this.props.setPhotoAccess(true)
-          }
-          this.props.setPhotoAccessChecked(true)
-        });
-    }, 450)
-  }
-
-  componentDidUpdate(prevProps) {
-    this._fetchCameraRoll(prevProps)
-  }
-
-  _fetchCameraRoll = (previous) => {
-    if (!previous.photoAccess && this.props.photoAccess) {
-      const fetchParams = {
-        first: 24,
-      };
-      CameraRoll.getPhotos(fetchParams)
-        .then(this._storeImages)
-        .catch(this._logImageError)
+    if (this.props.accessGranted) {
+      setTimeout(() => {
+        this.props.setRender(true)
+        this.props.refresh()
+      }, 500)
     }
   }
 
-  _storeImages = data => {
-    const assets = data.edges;
-    const images = assets.map((asset) => asset.node.image);
-    this.props.setCameraRoll(images)
-  }
-
-  _logImageError = err => {
-    console.log(err);
+  componentDidUpdate(previous) {
+    if (!previous.accessGranted && this.props.accessGranted) {
+      this.props.setRender(true)
+      this.props.refresh()
+    }
   }
 
   _renderRow = (image) => {
     return <PhotoCheckbox image={image} />
   }
 
+  _onRefresh = () => {
+    this.props.refresh()
+  }
+
   render() {
-    if (!this.props.photoAccessChecked) {
-      return <View style={styles.container} />
-    }
-    if (!this.props.photoAccess) {
-      return <PhotoPermissions />
-    }
+    if (!this.props.render) return null
+    const refreshing = !!(this.props.refreshing && this.props.cameraRoll.size)
     return (
       <View style={styles.container}>
         <ImmutableListView
@@ -105,6 +77,12 @@ class Roll extends Component {
           pageSize={10}
           initialListSize={1}
           removeClippedSubviews={false}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={this._onRefresh}
+            />
+          }
         />
       </View>
     )
