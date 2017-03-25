@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux';
 import * as Actions from '@/actions/ui';
-import { SORT_BY, PRICE_RANGE } from '@/constants';
+import { PRICE_RANGE } from '@/constants';
+import cameraRoll from './cameraRoll'
+import camera from './camera'
+import post from './post'
 
 function rehydrated(state = false, action = {}) {
   if (action.type === Actions.SET_REHYDRATED) {
@@ -35,4 +38,7 @@ export default combineReducers({
   showSearchResults,
   sortResultsByRating,
   priceRange,
+  cameraRoll,
+  post,
+  camera,
 })

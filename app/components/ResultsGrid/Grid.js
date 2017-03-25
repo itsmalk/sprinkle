@@ -95,7 +95,7 @@ export default class ResultsGrid extends Component {
     return (
       <View style={styles.container} pointerEvents={pointerEvents}>
         <Animated.View style={[styles.bg, translate]}>
-          <BlurView blurType="light" blurAmount={10} style={styles.grid}>
+          <BlurView blurType="xlight" blurAmount={10} style={styles.grid}>
             <ListView
               contentContainerStyle={styles.content}
               style={styles.grid}

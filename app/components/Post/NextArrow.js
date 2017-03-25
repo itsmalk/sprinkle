@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 import {
   StyleSheet,
-  View,
   TouchableOpacity,
   Image,
 } from 'react-native';
@@ -12,23 +9,30 @@ import { Images } from '@/constants';
 const styles = StyleSheet.create({
   button: {
     position: 'absolute',
-    bottom: 10,
-    right: 14,
-   },
+    top: 0,
+    right: 0,
+    bottom: 0,
+    width: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   img: {
-    backgroundColor: 'transparent',
+    backgroundColor: '#000',
   }
 });
 
-class FlashButton extends Component {
+class NextButton extends Component {
+  _onPress = () => {
+    this.props.navigator.dismissModal()
+  }
   render() {
     return (
       <TouchableOpacity
         style={styles.button}
-        onPress={this._pushPostView}
+        onPress={this._onPress}
       >
         <Image
-          source={Images.FLASH.OFF}
+          source={Images.FORWARD_BTN}
           style={styles.img}
         />
       </TouchableOpacity>
@@ -36,4 +40,4 @@ class FlashButton extends Component {
   }
 }
 
-export default FlashButton;
+export default NextButton;

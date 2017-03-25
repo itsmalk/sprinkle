@@ -8,6 +8,8 @@ export const Colors = {
   BLUE_SPRINKLE: '#7DDAD7',
   YELLOW_SPRINKLE: '#EBD36D',
   GREEN_SPRINKLE: '#92DA7D',
+  BTN_BLUE: '#157AFC',
+  TRANSPARENT_GRAY: '#C9C9C940',
 }
 
 export const PRICE_RANGE = {
@@ -30,6 +32,10 @@ export const Images = {
   GRID: {
     ON: require('@/assets/images/grid/grid.png'),
     OFF: require('@/assets/images/grid/gridOff.png'),
+  },
+  CROP: {
+    ON: require('@/assets/images/crop/crop.png'),
+    OFF: require('@/assets/images/crop/cropOff.png'),
   },
   FORWARD_BTN: require('@/assets/images/forward/forward.png'),
   BACKWARD_BTN: require('@/assets/images/back/back.png'),

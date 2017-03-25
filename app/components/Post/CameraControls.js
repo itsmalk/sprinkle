@@ -1,0 +1,34 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {
+  View,
+  StyleSheet,
+} from 'react-native';
+import SnapButton from '@/components/Post/SnapButton';
+import { cameraAccessGranted } from '@/selectors/camera';
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
+});
+
+const mapStateToProps = state => ({
+  accessGranted: cameraAccessGranted(state),
+})
+
+@connect(mapStateToProps)
+export default class CameraControls extends Component{
+  render() {
+    if (!this.props.accessGranted) return null
+    return (
+      <View style={styles.container}>
+        <SnapButton
+          capture={this.props.capture}
+        />
+      </View>
+    )
+  }
+}

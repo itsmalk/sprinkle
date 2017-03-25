@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     top: 0,
     right: 0,
     backgroundColor: 'rgba(0,0,0,0.7)',
-    borderBottomLeftRadius: 5,
+    borderBottomLeftRadius: 3,
     height: 24,
     paddingRight: 7,
     paddingLeft: 8,
@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#FFF',
-    fontWeight: 'bold',
+    fontSize: 11,
+    fontWeight: '500',
   },
 });
 

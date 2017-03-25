@@ -1,7 +1,9 @@
-export const APPEND_CAMERA_ROLL = 'APPEND_CAMERA_ROLL';
-export function appendCameraRoll(img) {
+const PREFIX = 'CAMERA/'
+
+export const SET_PERMISSION = `${PREFIX}SET_PERMISSION`;
+export function setPermission(payload) {
   return {
-    type: APPEND_CAMERA_ROLL,
-    payload: img,
-  }
+    type: SET_PERMISSION,
+    payload,
+  };
 }

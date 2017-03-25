@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Router, Scene, Modal } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-
+import getPanHandlers from '@/lib/getPanHandlers'
 import MapView from '@/containers/MapView';
 import Post from '@/containers/Post';
 import Dish from '@/containers/Dish';
-import CameraView from '@/containers/CameraView';
+import Dishes from '@/containers/Dishes';
 
 const ReduxRouter = connect()(Router);
 
@@ -17,6 +17,7 @@ const transparentScene = (props, computedProps) => {
   const style = {
     flex: 1,
     backgroundColor: 'transparent',
+    opacity: 1,
   };
   return style;
 };
@@ -29,9 +30,29 @@ class Nav extends Component {
         <ReduxRouter>
           <Scene key="modal" component={Modal}>
             <Scene key="root" hideNavBar>
-              <Scene key="map" component={MapView} initial direction="vertical" />
-              <Scene key="post" component={CameraView} direction="vertical" schema="modal" getSceneStyle={transparentScene} />
-              <Scene key="dish" component={Dish} direction="vertical" />
+              <Scene key="start" hideNavBar>
+                <Scene key="map" component={MapView} initial direction="vertical" />
+                <Scene
+                  key="post"
+                  component={Post}
+                  direction="vertical"
+                  schema="modal"
+                  getSceneStyle={transparentScene}
+                  getPanHandlers={getPanHandlers}
+                />
+                <Scene
+                  key="dish"
+                  component={Dish}
+                  getSceneStyle={transparentScene}
+                  direction="vertical"
+                />
+              </Scene>
+              <Scene
+                key="dishes"
+                component={Dishes}
+                getSceneStyle={transparentScene}
+                getPanHandlers={getPanHandlers}
+              />
             </Scene>
           </Scene>
         </ReduxRouter>

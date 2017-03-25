@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"TOCropViewController@git+https://github.com/meznaric/TOCropViewController.git":
+  version "0.0.1"
+  resolved "git+https://github.com/meznaric/TOCropViewController.git#b999f833df8b13da6a4f6fa3915ff02d0ef2a9c7"
+
 abab@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.3.tgz#b81de5f7274ec4e756d797cd834f303642724e5d"
@@ -2169,13 +2173,9 @@ iconv-lite@0.4.11:
   version "0.4.11"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.11.tgz#2ecb42fd294744922209a2e7c404dac8793d8ade"
 
-iconv-lite@0.4.13:
+iconv-lite@0.4.13, iconv-lite@~0.4.13:
   version "0.4.13"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.13.tgz#1f88aba4ab0b1508e8312acc39345f36e992e2f2"
-
-iconv-lite@~0.4.13:
-  version "0.4.15"
-  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.15.tgz#fe265a218ac6a57cfe854927e9d04c19825eddeb"
 
 ignore@^3.2.0:
   version "3.2.4"
@@ -2185,7 +2185,7 @@ image-size@^0.3.5:
   version "0.3.5"
   resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.3.5.tgz#83240eab2fb5b00b04aab8c74b0471e9cba7ad8c"
 
-"immutable@>= 3", immutable@^3.8.1:
+"immutable@>= 3", immutable@>=3.8, immutable@^3.8.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.1.tgz#200807f11ab0f72710ea485542de088075f68cd2"
 
@@ -3530,9 +3530,16 @@ raw-body@~2.1.2:
     iconv-lite "0.4.13"
     unpipe "1.0.0"
 
-react-addons-pure-render-mixin@15.0.2, react-addons-pure-render-mixin@^15.0.2:
+react-addons-pure-render-mixin@15.0.2:
   version "15.0.2"
   resolved "https://registry.yarnpkg.com/react-addons-pure-render-mixin/-/react-addons-pure-render-mixin-15.0.2.tgz#b7731c5cc7f21214d68a78c84f40df3aefdf462f"
+
+react-addons-pure-render-mixin@^15.0.2, react-addons-pure-render-mixin@^15.4.2:
+  version "15.4.2"
+  resolved "https://registry.yarnpkg.com/react-addons-pure-render-mixin/-/react-addons-pure-render-mixin-15.4.2.tgz#a8433c71c45e2368503721921dc47bdaf1fbabcd"
+  dependencies:
+    fbjs "^0.8.4"
+    object-assign "^4.1.0"
 
 react-clone-referenced-element@^1.0.1:
   version "1.0.1"
@@ -3561,6 +3568,24 @@ react-native-experimental-navigation@0.26.x:
     fbjs "^0.8.1"
     react-addons-pure-render-mixin "^15.0.2"
 
+react-native-image-cropping@syousif94/react-native-image-cropping:
+  version "1.0.0"
+  resolved "https://codeload.github.com/syousif94/react-native-image-cropping/tar.gz/08afe72f695ac2c9cf780c1802373865143245af"
+  dependencies:
+    TOCropViewController "git+https://github.com/meznaric/TOCropViewController.git"
+
+react-native-image-cropping@trueprint/react-native-image-cropping:
+  version "0.1.1"
+  resolved "https://codeload.github.com/trueprint/react-native-image-cropping/tar.gz/ee9048ad882b17d9529a81a5fdc8c69c64950443"
+  dependencies:
+    TOCropViewController "git+https://github.com/meznaric/TOCropViewController.git"
+
+react-native-immutable-list-view@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/react-native-immutable-list-view/-/react-native-immutable-list-view-0.4.2.tgz#cc9be635c62e3255f3865eedf91e4e0b805bc15c"
+  dependencies:
+    immutable ">=3.8"
+
 react-native-keyboard-spacer@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/react-native-keyboard-spacer/-/react-native-keyboard-spacer-0.3.1.tgz#9580297ebfd078202dc4c65303d29cda35de67f1"
@@ -3573,6 +3598,10 @@ react-native-permissions@^0.2.7:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-0.2.7.tgz#92eae05894ed99235707e20ecb8fbf7d765752ae"
 
+react-native-photos-framework@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-photos-framework/-/react-native-photos-framework-1.0.1.tgz#f9e3e35f5512c2bd0f3537f6087336cd4a081607"
+
 react-native-router-flux@^3.37.0:
   version "3.37.0"
   resolved "https://registry.yarnpkg.com/react-native-router-flux/-/react-native-router-flux-3.37.0.tgz#18e8fd3e1e6dbdc4d8340cd47313c28bb9bb1caf"
@@ -3582,13 +3611,17 @@ react-native-router-flux@^3.37.0:
     react-native-tabs "^1.0.9"
     react-static-container "1.0.1"
 
+react-native-swiper@^1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/react-native-swiper/-/react-native-swiper-1.5.4.tgz#a85535b5374ef8d605a7a720e447ac46816ac448"
+
 react-native-tabs@^1.0.9:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/react-native-tabs/-/react-native-tabs-1.0.9.tgz#75d3c35e8b5b6970869eab282372cb32e2a782cd"
 
-react-native@^0.42.0:
-  version "0.42.0"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.42.0.tgz#59b501603a63232598fff653a36307a26010402e"
+react-native@^0.42.3:
+  version "0.42.3"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.42.3.tgz#450c8a03a5e3e991a08a426f22776dd8feb80b26"
   dependencies:
     absolute-path "^0.0.0"
     art "^0.10.0"
@@ -3683,7 +3716,7 @@ react-redux@^5.0.2:
     lodash-es "^4.2.0"
     loose-envify "^1.1.0"
 
-react-static-container@1.0.1:
+react-static-container@1.0.1, react-static-container@next:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-static-container/-/react-static-container-1.0.1.tgz#694c0dd68a896b879519afb548399cc1989c9ab0"
 
