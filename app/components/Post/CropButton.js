@@ -4,9 +4,12 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  NativeModules,
 } from 'react-native';
 import { Images } from '@/constants';
-import { showCropButton } from '@/selectors/viewFinder';
+import { showCropButton, selectedPhoto } from '@/selectors/viewFinder';
+import { setSelectedPhoto } from '@/actions/post';
+const { ReactNativeImageCropping } = NativeModules;
 
 const styles = StyleSheet.create({
   button: {
@@ -20,16 +23,39 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  showCropButton: showCropButton(state)
+  showCropButton: showCropButton(state),
+  selectedPhoto: selectedPhoto(state),
 })
 
-@connect(mapStateToProps)
+const mapDispatchToProps = {
+  setSelectedPhoto
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default class CropButton extends Component {
+  _startCrop = () => {
+    const aspectRatio = ReactNativeImageCropping.AspectRatioSquare;
+    const uri = this.props.selectedPhoto.original
+    ReactNativeImageCropping
+      .cropImageWithUrlAndAspect(uri, aspectRatio)
+      .then(image => {
+        this.props.setSelectedPhoto({
+          ...image,
+          src: 'photos',
+          original: uri,
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   render() {
     if (!this.props.showCropButton) return null
     return (
       <TouchableOpacity
         style={styles.button}
+        onPress={this._startCrop}
       >
         <Image
           source={Images.CROP.OFF}

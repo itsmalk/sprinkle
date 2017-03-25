@@ -6,9 +6,11 @@ import {
   StyleSheet,
   Dimensions,
   View,
+  NativeModules,
 } from 'react-native';
 import { Colors } from '@/constants';
 import { setSelectedPhoto } from '@/actions/post';
+const { ReactNativeImageCropping } = NativeModules;
 
 const { width } = Dimensions.get('window');
 const perRow = 4
@@ -54,14 +56,25 @@ const mapDispatchToProps = {
 class PhotoCheckbox extends Component {
   static height = itemWidth
 
-  _setSelectedPhoto = () => {
+  _selectPhoto = () => {
+    const aspectRatio = ReactNativeImageCropping.AspectRatioSquare;
     const {
-      selectedPhoto,
-      image,
+      image: {
+        uri
+      }
     } = this.props;
-    if (!selectedPhoto || (selectedPhoto.uri !== image.uri)) {
-      this.props.setSelectedPhoto(image);
-    }
+    ReactNativeImageCropping
+      .cropImageWithUrlAndAspect(uri, aspectRatio)
+      .then(image => {
+        this.props.setSelectedPhoto({
+          ...image,
+          src: 'photos',
+          original: uri,
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   render() {
@@ -72,7 +85,7 @@ class PhotoCheckbox extends Component {
       <TouchableOpacity
         style={styles.btn}
         activeOpacity={0.5}
-        onPress={this._setSelectedPhoto}
+        onPress={this._selectPhoto}
       >
         <View style={styles.content}>
           <Image
