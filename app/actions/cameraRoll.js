@@ -34,14 +34,6 @@ export function setRefreshing(payload) {
   };
 }
 
-export const SET_SHOW_REFRESHING = `${PREFIX}SET_SHOW_REFRESHING`;
-export function setShowRefreshing(payload) {
-  return {
-    type: SET_SHOW_REFRESHING,
-    payload,
-  };
-}
-
 export const SET_CAMERA_ROLL = `${PREFIX}SET_CAMERA_ROLL`;
 export function setCameraRoll(payload) {
   return {

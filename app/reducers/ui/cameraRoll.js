@@ -26,20 +26,8 @@ function refreshing(state = false, action = {}) {
   }
 }
 
-function showRefreshing(state = false, action = {}) {
-  switch (action.type) {
-    case Actions.SET_SHOW_REFRESHING:
-      return action.payload
-    case Actions.SET_CAMERA_ROLL:
-      return false
-    default:
-      return state;
-  }
-}
-
 export default combineReducers({
   render,
   permission,
   refreshing,
-  showRefreshing,
 })

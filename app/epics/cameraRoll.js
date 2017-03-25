@@ -13,11 +13,6 @@ const attemptRefresh = (action$, store) => action$.ofType(Actions.REFRESH)
     } = store.getState()
     return !refreshing
   })
-  .do(action => {
-    if (action.payload.showRefreshing) {
-      store.dispatch(Actions.setShowRefreshing(true))
-    }
-  })
   .mapTo(Actions.setRefreshing(true))
 
 const refresh = (action$, store) => action$.ofType(Actions.SET_REFRESHING)

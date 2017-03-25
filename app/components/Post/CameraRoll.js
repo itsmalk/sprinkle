@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
-  showRefreshing: state.ui.cameraRoll.showRefreshing,
   render: state.ui.cameraRoll.render,
   accessGranted: photoAccessGranted(state),
   cameraRoll: state.cameraRoll,
