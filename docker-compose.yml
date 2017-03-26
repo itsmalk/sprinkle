@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  elasticsearch:
+    image: elasticsearch:5.2-alpine
+
+  server:
+    build: ./server
+    command: sh /home/app/start.sh
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./server:/home/app
+    links:
+      - elasticsearch

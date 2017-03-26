@@ -1,0 +1,12 @@
+{
+  "artifacts": [],
+  "remote": {
+    "resolved": "https://registry.yarnpkg.com/etag/-/etag-1.8.0.tgz#6f631aef336d6c46362b51764044ce216be3c051",
+    "type": "tarball",
+    "reference": "https://registry.yarnpkg.com/etag/-/etag-1.8.0.tgz",
+    "hash": "6f631aef336d6c46362b51764044ce216be3c051",
+    "registry": "npm"
+  },
+  "registry": "npm",
+  "hash": "6f631aef336d6c46362b51764044ce216be3c051"
+}
