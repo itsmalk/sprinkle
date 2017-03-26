@@ -56,4 +56,5 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 
-.cache/
+server/.cache/
+server/.config/
