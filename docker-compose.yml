@@ -3,6 +3,10 @@ version: '3'
 services:
   elasticsearch:
     image: elasticsearch:5.2-alpine
+    ulimits:
+      memlock: -1
+    volumes:
+      - ./server/elasticsearch/data:/data
 
   server:
     build: ./server

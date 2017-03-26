@@ -58,3 +58,4 @@ fastlane/screenshots
 
 server/.cache/
 server/.config/
+server/elasticsearch/
