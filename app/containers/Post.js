@@ -28,6 +28,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'transparent',
   },
+  dot: {
+    height: 6,
+    width: 6,
+    borderRadius: 3,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    marginHorizontal: 3,
+    top: 9
+  },
+  active: {
+    backgroundColor: '#000'
+  },
 });
 
 const mapStateToProps = state => ({
@@ -61,12 +72,14 @@ export default class Post extends Component {
           ref={this._setViewFinderRef}
         />
         <Swiper
-          showsPagination={false}
+          showsPagination={true}
           height={swiperHeight}
           loop
           bounces
           index={this.props.swiperIndex}
           onMomentumScrollEnd={this._onMomentumScrollEnd}
+          dot={<View style={styles.dot}/>}
+          activeDot={<View style={[styles.dot, styles.active]}/>}
         >
           <View style={styles.page}>
             <CameraControls

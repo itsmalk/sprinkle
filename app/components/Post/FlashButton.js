@@ -6,6 +6,7 @@ import {
   Image,
 } from 'react-native';
 import { Images } from '@/constants';
+import { setFlash } from '@/actions/camera';
 
 const styles = StyleSheet.create({
   button: {
@@ -18,14 +19,30 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = state => ({
+  flash: state.ui.camera.flash
+})
+
+const mapDispatchToProps = {
+  setFlash
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 class FlashButton extends Component {
+  _toggleFlash = () => {
+    this.props.setFlash(!this.props.flash)
+  }
   render() {
+    const img = this.props.flash
+      ? Images.FLASH.ON
+      : Images.FLASH.OFF
     return (
       <TouchableOpacity
         style={styles.button}
+        onPress={this._toggleFlash}
       >
         <Image
-          source={Images.FLASH.OFF}
+          source={img}
           style={styles.img}
         />
       </TouchableOpacity>
