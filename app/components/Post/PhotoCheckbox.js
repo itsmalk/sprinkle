@@ -14,33 +14,21 @@ const { ReactNativeImageCropping } = NativeModules;
 
 const { width } = Dimensions.get('window');
 const perRow = 4
-const itemWidth = (width - (5 * (perRow + 1))) / perRow;
+const itemWidth = (width - 4) / perRow;
 
 const styles = StyleSheet.create({
   btn: {
     width: itemWidth,
-    margin: 2.5,
     height: itemWidth,
-    borderRadius: 4,
     backgroundColor: Colors.BLACK,
-    shadowColor: Colors.BLACK,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
-    shadowOpacity: 0.6,
-    shadowRadius: 1,
+    margin: 0.5,
   },
   content: {
     flex: 1,
-    borderRadius: 4,
-    overflow: 'hidden',
-    borderWidth: 0.5,
-    borderColor: Colors.BLACK,
   },
   img: {
-    width: itemWidth - 1,
-    height: itemWidth - 1,
+    width: itemWidth,
+    height: itemWidth,
   },
 })
 

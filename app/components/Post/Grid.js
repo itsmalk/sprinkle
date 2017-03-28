@@ -7,7 +7,7 @@ import {
 } from 'react-native'
 
 const { width } = Dimensions.get('window')
-const lineMargin = (width - 2) / 3
+const lineMargin = ((width) / 3)
 
 const styles = StyleSheet.create({
   container: {
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   bar: {
-    backgroundColor: 'yellow',
+    backgroundColor: '#FFCA1F',
   },
   horizontal: {
     left: 0,
@@ -26,19 +26,13 @@ const styles = StyleSheet.create({
     top: lineMargin,
   },
   bottomBar: {
-    bottom: lineMargin,
+    top: lineMargin * 2,
   },
-  vertical: {
-    top: 0,
-    bottom: 0,
-    width: 1,
-  },
-  leftBar: {
-    left: lineMargin,
-  },
-  rightBar: {
-    right: lineMargin,
-  },
+  rotate: {
+    transform: [
+      { rotate: '90deg' }
+    ]
+  }
 })
 
 const mapStateToProps = state => ({
@@ -50,26 +44,30 @@ export default class Grid extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={[
-          styles.bar,
-          styles.vertical,
-          styles.leftBar
-        ]} />
-        <View style={[
-          styles.bar,
-          styles.vertical,
-          styles.rightBar
-        ]} />
-        <View style={[
-          styles.bar,
-          styles.horizontal,
-          styles.topBar
-        ]} />
-        <View style={[
-          styles.bar,
-          styles.horizontal,
-          styles.bottomBar
-        ]} />
+        <View style={styles.container}>
+          <View style={[
+            styles.bar,
+            styles.horizontal,
+            styles.topBar
+          ]} />
+          <View style={[
+            styles.bar,
+            styles.horizontal,
+            styles.bottomBar
+          ]} />
+        </View>
+        <View style={[styles.container, styles.rotate]}>
+          <View style={[
+            styles.bar,
+            styles.horizontal,
+            styles.topBar
+          ]} />
+          <View style={[
+            styles.bar,
+            styles.horizontal,
+            styles.bottomBar
+          ]} />
+        </View>
       </View>
     )
   }

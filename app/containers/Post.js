@@ -15,8 +15,8 @@ import CameraPermissions from '@/components/Post/CameraPermissions';
 import PhotoPermissions from '@/components/Post/PhotoPermissions';
 import { setSwiperIndex } from '@/actions/post';
 
-const { height, width } = Dimensions.get('window')
-const swiperHeight = height - (20 + width)
+const { height } = Dimensions.get('window')
+const swiperHeight = height - 20
 
 const styles = StyleSheet.create({
   container: {
@@ -68,12 +68,9 @@ export default class Post extends Component {
   render() {
     return (
       <BlurView blurType="xlight" blurAmount={10} style={styles.container}>
-        <ViewFinder
-          ref={this._setViewFinderRef}
-        />
         <Swiper
-          showsPagination={true}
           height={swiperHeight}
+          showsPagination
           loop
           bounces
           index={this.props.swiperIndex}
@@ -93,6 +90,9 @@ export default class Post extends Component {
           </View>
           <Form />
         </Swiper>
+        <ViewFinder
+          ref={this._setViewFinderRef}
+        />
       </BlurView>
     )
   }

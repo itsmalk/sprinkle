@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {
   View,
   StyleSheet,
+  Dimensions,
 } from 'react-native';
 import ImmutableListView from 'react-native-immutable-list-view';
 import RNPhotosFramework from 'react-native-photos-framework';
@@ -10,16 +11,18 @@ import PhotoCheckbox from '@/components/Post/PhotoCheckbox';
 import { photoAccessGranted } from '@/selectors/cameraRoll';
 import { setRender, refresh } from '@/actions/cameraRoll';
 
+const { width } = Dimensions.get('window')
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'transparent',
+    paddingTop: width,
   },
   list: {
     flex: 1,
   },
   content: {
-    padding: 2.5,
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-start',

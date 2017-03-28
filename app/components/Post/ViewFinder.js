@@ -21,6 +21,11 @@ var {width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
+    position: 'absolute',
+    top: 20,
+    height: width,
+    left: 0,
+    right: 0,
     backgroundColor: '#000',
     borderTopWidth: 0.5,
     borderBottomWidth: 0.5,
@@ -122,7 +127,7 @@ class ViewFinder extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.container} pointerEvents="none">
         { this._renderPreview() }
       </View>
     )
