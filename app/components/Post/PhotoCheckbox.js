@@ -13,8 +13,8 @@ import { setSelectedPhoto } from '@/actions/post';
 const { ReactNativeImageCropping } = NativeModules;
 
 const { width } = Dimensions.get('window');
-const perRow = 4
-const itemWidth = (width - 4) / perRow;
+const perRow = 4;
+const itemWidth = (width - 3) / perRow;
 
 const styles = StyleSheet.create({
   btn: {
@@ -30,40 +30,39 @@ const styles = StyleSheet.create({
     width: itemWidth,
     height: itemWidth,
   },
-})
+});
 
 const mapStateToProps = state => ({
-  selectedPhoto: state.ui.post.selectedPhoto
-})
+  selectedPhoto: state.ui.post.selectedPhoto,
+});
 
 const mapDispatchToProps = {
-  setSelectedPhoto
-}
+  setSelectedPhoto,
+};
 
 @connect(mapStateToProps, mapDispatchToProps)
 class PhotoCheckbox extends Component {
-  static height = itemWidth
+  static height = itemWidth;
 
   _selectPhoto = () => {
     const aspectRatio = ReactNativeImageCropping.AspectRatioSquare;
     const {
       image: {
-        uri
-      }
+        uri,
+      },
     } = this.props;
-    ReactNativeImageCropping
-      .cropImageWithUrlAndAspect(uri, aspectRatio)
+    ReactNativeImageCropping.cropImageWithUrlAndAspect(uri, aspectRatio)
       .then(image => {
         this.props.setSelectedPhoto({
           ...image,
           src: 'photos',
           original: uri,
-        })
+        });
       })
       .catch(err => {
-        console.log(err)
-      })
-  }
+        console.log(err);
+      });
+  };
 
   render() {
     const {
@@ -76,14 +75,11 @@ class PhotoCheckbox extends Component {
         onPress={this._selectPhoto}
       >
         <View style={styles.content}>
-          <Image
-            source={image}
-            style={styles.img}
-          />
+          <Image source={image} style={styles.img} />
         </View>
       </TouchableOpacity>
-    )
+    );
   }
 }
 
-export default PhotoCheckbox
+export default PhotoCheckbox;
