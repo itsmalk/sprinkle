@@ -13,69 +13,56 @@ import { setSelectedPhoto } from '@/actions/post';
 const { ReactNativeImageCropping } = NativeModules;
 
 const { width } = Dimensions.get('window');
-const perRow = 4
-const itemWidth = (width - (5 * (perRow + 1))) / perRow;
+const perRow = 4;
+const itemWidth = (width - 3) / perRow;
 
 const styles = StyleSheet.create({
   btn: {
     width: itemWidth,
-    margin: 2.5,
     height: itemWidth,
-    borderRadius: 4,
     backgroundColor: Colors.BLACK,
-    shadowColor: Colors.BLACK,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
-    shadowOpacity: 0.6,
-    shadowRadius: 1,
+    margin: 0.5,
   },
   content: {
     flex: 1,
-    borderRadius: 4,
-    overflow: 'hidden',
-    borderWidth: 0.5,
-    borderColor: Colors.BLACK,
   },
   img: {
-    width: itemWidth - 1,
-    height: itemWidth - 1,
+    width: itemWidth,
+    height: itemWidth,
   },
-})
+});
 
 const mapStateToProps = state => ({
-  selectedPhoto: state.ui.post.selectedPhoto
-})
+  selectedPhoto: state.ui.post.selectedPhoto,
+});
 
 const mapDispatchToProps = {
-  setSelectedPhoto
-}
+  setSelectedPhoto,
+};
 
 @connect(mapStateToProps, mapDispatchToProps)
 class PhotoCheckbox extends Component {
-  static height = itemWidth
+  static height = itemWidth;
 
   _selectPhoto = () => {
     const aspectRatio = ReactNativeImageCropping.AspectRatioSquare;
     const {
       image: {
-        uri
-      }
+        uri,
+      },
     } = this.props;
-    ReactNativeImageCropping
-      .cropImageWithUrlAndAspect(uri, aspectRatio)
+    ReactNativeImageCropping.cropImageWithUrlAndAspect(uri, aspectRatio)
       .then(image => {
         this.props.setSelectedPhoto({
           ...image,
           src: 'photos',
           original: uri,
-        })
+        });
       })
       .catch(err => {
-        console.log(err)
-      })
-  }
+        console.log(err);
+      });
+  };
 
   render() {
     const {
@@ -88,14 +75,11 @@ class PhotoCheckbox extends Component {
         onPress={this._selectPhoto}
       >
         <View style={styles.content}>
-          <Image
-            source={image}
-            style={styles.img}
-          />
+          <Image source={image} style={styles.img} />
         </View>
       </TouchableOpacity>
-    )
+    );
   }
 }
 
-export default PhotoCheckbox
+export default PhotoCheckbox;
