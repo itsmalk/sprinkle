@@ -56,4 +56,7 @@ export const Images = {
   RSLTS_FAVORITES: require('@/assets/images/resultsFavorites/favorites.png'),
   RSLTS_LOCATION: require('@/assets/images/resultsLocation/location.png'),
   RSLTS_RATINGS: require('@/assets/images/resultsRatings/star.png'),
+  POST_LIKE: require('@/assets/images/postLike/like.png'),
+  CHECK: require('@/assets/images/check/check.png'),
+  POST_STAR: require('@/assets/images/postStar/postStar.png'),
 }
