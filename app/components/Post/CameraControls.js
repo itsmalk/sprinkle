@@ -3,15 +3,19 @@ import { connect } from 'react-redux';
 import {
   View,
   StyleSheet,
+  Dimensions,
 } from 'react-native';
 import SnapButton from '@/components/Post/SnapButton';
 import { cameraAccessGranted } from '@/selectors/camera';
+
+const { width } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
+    paddingTop: width,
   },
 });
 

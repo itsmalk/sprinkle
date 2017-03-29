@@ -25,6 +25,7 @@ export const Images = {
   NEXT_PAGE_BTN: require('@/assets/images/nextPage/nextPage.png'),
   LIKES_BTN: require('@/assets/images/likes/likes.png'),
   MENU_BTN: require('@/assets/images/menu/menu.png'),
+  SWIPE_DOWN_BTN: require('@/assets/images/swipeDown/swipeDown.png'),
   FLASH: {
     ON: require('@/assets/images/flash/flash.png'),
     OFF: require('@/assets/images/flash/flashOff.png'),
