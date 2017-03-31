@@ -1,30 +1,41 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  View,
   TouchableOpacity,
   Image,
 } from 'react-native';
 import { Images } from '@/constants';
+import { setStars } from '@/actions/post';
+import { connect } from 'react-redux';
 
 const styles = StyleSheet.create({
-  btn: {
-  },
-  img: {
-    margin: 4,
-  }
 });
 
+const mapStateToProps = state => ({
+  stars: state.ui.post.stars,
+});
+
+const mapDispatchToProps = {
+  setStars,
+};
+
+@connect(mapStateToProps, mapDispatchToProps)
 class SnapButton extends Component {
+  _setStars = () => {
+    this.props.setStars(this.props.index + 1);
+  };
   render() {
+    const img = this.props.index + 1 <= this.props.stars ?
+    Images.POST_STAR : Images.DARK_POST_STAR;
     return (
-      <TouchableOpacity style={styles.btn} >
+      <TouchableOpacity onPress={this._setStars}>
         <Image
-          style={styles.img}
-          source={Images.POST_STAR}
+          style={{margin: 4}}
+          source={img}
         />
       </TouchableOpacity>
     )
+
   }
 }
 

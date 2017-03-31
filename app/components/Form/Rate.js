@@ -5,29 +5,26 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
+  Dimensions,
 } from 'react-native';
 import StarButton from '@/components/Form/StarButton';
+const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   view: {
-    marginTop: 30,
-    marginBottom: 20,
-    marginRight: 10,
-    backgroundColor: '#F0F0F0',
+    marginBottom: height/22,
+    backgroundColor: 'rgba(240,240,240,0.7)',
     borderRadius: 3,
-    height: 52,
+    height: height/12,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 5,
     flexDirection: 'row',
-  },
+  }
 });
 
-class Dish extends Component {
+class Rate extends Component {
   render() {
-    if (this.props.index + 1 <= this.props.stars) {
-
-    }
     return (
       <View style={styles.view}>
           { [0,1,2,3,4].map(i => <StarButton key={i} index={i}  />) }
@@ -36,4 +33,4 @@ class Dish extends Component {
   }
 }
 
-export default Dish;
+export default Rate;

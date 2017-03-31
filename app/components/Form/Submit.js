@@ -4,38 +4,34 @@ import { Actions } from 'react-native-router-flux';
 import {
   StyleSheet,
   TouchableOpacity,
-  Text,
   View,
   Image,
+  Dimensions,
 } from 'react-native';
 import { Images } from '@/constants';
+const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   view: {
-    marginTop: 30,
-    marginLeft: 10,
-    backgroundColor: '#13BE24',
+    marginBottom: height/22,
+    backgroundColor: 'rgba(19,190,36,0.7)',
     borderRadius: 3,
-    height: 52,
+    height: height/12,
     aspectRatio: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
   },
   btn: {
-    padding: 5,
-  },
-  img: {
-
-   }
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+  }
 });
 
-class Dish extends Component {
+class Submit extends Component {
   render() {
     return (
       <View style={styles.view}>
         <TouchableOpacity style={styles.btn}>
           <Image
-            style={styles.img}
             source={Images.CHECK}
           />
         </TouchableOpacity>
@@ -44,4 +40,4 @@ class Dish extends Component {
   }
 }
 
-export default Dish;
+export default Submit;

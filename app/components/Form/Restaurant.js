@@ -6,25 +6,32 @@ import {
   TouchableOpacity,
   Text,
   View,
+  Dimensions,
 } from 'react-native';
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   view: {
     flex: 1,
-    marginRight: 10,
-    marginTop: 30,
-    backgroundColor: '#F0F0F0',
+    marginRight: width/40,
+    marginBottom: height/34,
+    backgroundColor: 'rgba(240,240,240,0.7)',
     borderRadius: 3,
-    height: 52,
+    height: height/11,
   },
   btn: {
     padding: 5,
+    flex: 1,
   },
   text: {
     color: '#157AFC',
     top: 0,
     left: 0,
    }
+});
+
+const mapStateToProps = state => ({
+  restaurant: state.ui.post.restaurant,
 });
 
 class Restaurant extends Component {
