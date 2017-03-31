@@ -15,3 +15,19 @@ export function setSwiperIndex(index) {
     payload: index,
   }
 }
+
+export const SET_LIKED = `${PREFIX}SET_LIKED`;
+export function setLiked(img) {
+  return {
+    type: SET_LIKED,
+    payload: img,
+  }
+}
+
+export const SET_STARS = `${PREFIX}SET_STARS`;
+export function setStars(index) {
+  return {
+    type: SET_STARS,
+    payload: index,
+  }
+}

@@ -5,15 +5,19 @@ import {
   TouchableOpacity,
   StyleSheet,
   Text,
+  Dimensions,
 } from 'react-native';
 import { Colors } from '@/constants';
 import Permissions from 'react-native-permissions';
 import { setPermission } from '@/actions/camera';
 import { cameraAccessGranted } from '@/selectors/camera';
 
+const { width } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
+    top: width + 1,
     backgroundColor: 'transparent',
     justifyContent: 'center',
     alignItems: 'center',
@@ -31,16 +35,16 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 14,
     fontWeight: '500',
-  }
-})
+  },
+});
 
 const mapStateToProps = state => ({
   accessGranted: cameraAccessGranted(state),
-})
+});
 
 const mapDispatchToProps = {
-  setPermission
-}
+  setPermission,
+};
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class CameraPermissions extends Component {
@@ -50,7 +54,7 @@ export default class CameraPermissions extends Component {
       switch (status) {
         case 'undetermined': {
           const status = await Permissions.requestPermission('camera');
-          this.props.setPermission(status)
+          this.props.setPermission(status);
           break;
         }
         case 'denied':
@@ -59,24 +63,23 @@ export default class CameraPermissions extends Component {
           }
           break;
         case 'authorized':
-          this.props.setPermission(status)
+          this.props.setPermission(status);
           break;
         default:
           return;
       }
+    } catch (err) {
+      console.log(err);
     }
-    catch (err) {
-      console.log(err)
-    }
-  }
+  };
   render() {
-    if (this.props.accessGranted) return null
+    if (this.props.accessGranted) return null;
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.btn} onPress={this._enable}>
           <Text style={styles.text}>Enable Camera Access</Text>
         </TouchableOpacity>
       </View>
-    )
+    );
   }
 }
