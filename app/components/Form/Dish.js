@@ -12,24 +12,22 @@ const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   view: {
-    marginLeft: 10,
-    marginRight: 10,
-    marginBottom: height/34,
+    marginHorizontal: 15,
+    marginRight: 15,
     backgroundColor: 'rgba(240,240,240,0.7)',
-    borderRadius: 3,
-    height: height/11,
+    borderRadius: 5,
+    height: 52,
   },
   btn: {
-    flexDirection: 'row',
-    padding: 5,
-    alignItems: 'flex-start',
+    paddingVertical: 7,
+    paddingHorizontal: 10,
     flex: 1,
   },
   text: {
     color: '#157AFC',
-    top: 0,
-    left: 0,
-   }
+    fontSize: 11,
+    fontWeight: '600',
+  },
 });
 
 const mapStateToProps = state => ({
@@ -44,7 +42,7 @@ class Dish extends Component {
           <Text style={styles.text}>Dish</Text>
         </TouchableOpacity>
       </View>
-    )
+    );
   }
 }
 

@@ -1,33 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import {
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  View,
-  Dimensions,
-} from 'react-native';
-const { width, height } = Dimensions.get('window');
+import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 
 const styles = StyleSheet.create({
   view: {
     flex: 1,
-    marginRight: width/40,
-    marginBottom: height/34,
     backgroundColor: 'rgba(240,240,240,0.7)',
-    borderRadius: 3,
-    height: height/11,
+    borderRadius: 5,
+    height: 52,
   },
   btn: {
-    padding: 5,
+    paddingVertical: 7,
+    paddingHorizontal: 10,
     flex: 1,
   },
   text: {
     color: '#157AFC',
-    top: 0,
-    left: 0,
-   }
+    fontSize: 11,
+    fontWeight: '600',
+  },
 });
 
 const mapStateToProps = state => ({
@@ -42,7 +34,7 @@ class Restaurant extends Component {
           <Text style={styles.text}>Restaurant</Text>
         </TouchableOpacity>
       </View>
-    )
+    );
   }
 }
 

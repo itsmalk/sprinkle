@@ -1,27 +1,25 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-} from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import Dish from '@/components/Form/Dish';
 import Restaurant from '@/components/Form/Restaurant';
 import Price from '@/components/Form/Price';
 import Like from '@/components/Form/Like';
 import Rate from '@/components/Form/Rate';
 import Submit from '@/components/Form/Submit';
+const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-end',
+    paddingTop: width + 1 + 15,
+    paddingBottom: 35,
     backgroundColor: 'transparent',
+    justifyContent: 'space-between',
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginLeft: 10,
-    marginRight: 10,
+    paddingHorizontal: 15,
   },
 });
 
@@ -38,6 +36,6 @@ const Form = () => (
       <Submit />
     </View>
   </View>
-)
+);
 
 export default Form;

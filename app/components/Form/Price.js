@@ -8,26 +8,29 @@ import {
   View,
   Dimensions,
 } from 'react-native';
-const { width, height } = Dimensions.get('window');
+
+const { height, width } = Dimensions.get('window');
+const margin = (height - 20 - (width + 16 + 35) - 52 * 3) / 2;
+console.log(margin);
 
 const styles = StyleSheet.create({
   view: {
     flex: 0.5,
-    marginLeft: width/40,
-    marginBottom: height/34,
+    marginLeft: margin,
     backgroundColor: 'rgba(240,240,240,0.7)',
-    borderRadius: 3,
-    height: height/11,
+    borderRadius: 5,
+    height: 52,
   },
   btn: {
-    padding: 5,
+    paddingVertical: 7,
+    paddingHorizontal: 10,
     flex: 1,
   },
   text: {
     color: '#157AFC',
-    top: 0,
-    left: 0,
-   }
+    fontSize: 11,
+    fontWeight: '600',
+  },
 });
 
 const mapStateToProps = state => ({
@@ -42,7 +45,7 @@ class Price extends Component {
           <Text style={styles.text}>Price</Text>
         </TouchableOpacity>
       </View>
-    )
+    );
   }
 }
 
