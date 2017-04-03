@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import { setVisible } from '@/actions/autocomplete';
 
 const styles = StyleSheet.create({
   view: {
@@ -26,11 +26,19 @@ const mapStateToProps = state => ({
   restaurant: state.ui.post.restaurant,
 });
 
+const mapDispatchToProps = {
+  setVisible,
+};
+
+@connect(mapStateToProps, mapDispatchToProps)
 class Restaurant extends Component {
+  _pushAutocomplete = () => {
+    this.props.setVisible(true);
+  };
   render() {
     return (
       <View style={styles.view}>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={this._pushAutocomplete}>
           <Text style={styles.text}>Restaurant</Text>
         </TouchableOpacity>
       </View>

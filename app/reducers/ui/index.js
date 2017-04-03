@@ -1,13 +1,14 @@
 import { combineReducers } from 'redux';
 import * as Actions from '@/actions/ui';
 import { PRICE_RANGE } from '@/constants';
-import cameraRoll from './cameraRoll'
-import camera from './camera'
-import post from './post'
+import cameraRoll from './cameraRoll';
+import camera from './camera';
+import post from './post';
+import autocomplete from './autocomplete';
 
 function rehydrated(state = false, action = {}) {
   if (action.type === Actions.SET_REHYDRATED) {
-    return true
+    return true;
   }
   return state;
 }
@@ -41,4 +42,5 @@ export default combineReducers({
   cameraRoll,
   post,
   camera,
-})
+  autocomplete,
+});

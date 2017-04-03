@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { StyleSheet, View, Dimensions } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import StarButton from '@/components/Form/StarButton';
-
-const { height, width } = Dimensions.get('window');
-const margin = (height - 20 - (width + 16 + 35) - 52 * 3) / 2;
 
 const styles = StyleSheet.create({
   view: {
@@ -16,7 +13,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     flex: 1,
-    marginHorizontal: margin,
+    marginHorizontal: 10.5,
   },
 });
 

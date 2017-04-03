@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
+import { View, StyleSheet } from 'react-native';
 import { Router, Scene, Modal } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import getPanHandlers from '@/lib/getPanHandlers'
+import getPanHandlers from '@/lib/getPanHandlers';
 import MapView from '@/containers/MapView';
 import Post from '@/containers/Post';
 import Dish from '@/containers/Dish';
 import Dishes from '@/containers/Dishes';
+import Autocomplete from '@/containers/Autocomplete';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 const ReduxRouter = connect()(Router);
 
 const mapStateToProps = state => ({
-  rehydrated: state.ui.rehydrated
+  rehydrated: state.ui.rehydrated,
 });
 
 const transparentScene = (props, computedProps) => {
@@ -27,38 +35,46 @@ class Nav extends Component {
   render() {
     if (this.props.rehydrated) {
       return (
-        <ReduxRouter>
-          <Scene key="modal" component={Modal}>
-            <Scene key="root" hideNavBar>
-              <Scene key="start" hideNavBar>
-                <Scene key="map" component={MapView} initial direction="vertical" />
+        <View style={styles.container}>
+          <ReduxRouter>
+            <Scene key="modal" component={Modal}>
+              <Scene key="root" hideNavBar>
+                <Scene key="start" hideNavBar>
+                  <Scene
+                    key="map"
+                    component={MapView}
+                    initial
+                    direction="vertical"
+                  />
+                  <Scene
+                    key="post"
+                    component={Post}
+                    direction="vertical"
+                    schema="modal"
+                    getSceneStyle={transparentScene}
+                    getPanHandlers={getPanHandlers}
+                  />
+                  <Scene
+                    key="dish"
+                    component={Dish}
+                    getSceneStyle={transparentScene}
+                    direction="vertical"
+                  />
+                </Scene>
                 <Scene
-                  key="post"
-                  component={Post}
-                  direction="vertical"
-                  schema="modal"
+                  key="dishes"
+                  component={Dishes}
                   getSceneStyle={transparentScene}
                   getPanHandlers={getPanHandlers}
                 />
-                <Scene
-                  key="dish"
-                  component={Dish}
-                  getSceneStyle={transparentScene}
-                  direction="vertical"
-                />
               </Scene>
-              <Scene
-                key="dishes"
-                component={Dishes}
-                getSceneStyle={transparentScene}
-                getPanHandlers={getPanHandlers}
-              />
             </Scene>
-          </Scene>
-        </ReduxRouter>
+          </ReduxRouter>
+          <Autocomplete />
+        </View>
       );
     }
-    return null
+    return null;
   }
 }
 

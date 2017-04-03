@@ -14,26 +14,33 @@ const styles = StyleSheet.create({
     paddingTop: width + 1 + 15,
     paddingBottom: 35,
     backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  form: {
+    height: 52 * 3 + 21,
+    width: 290,
     justifyContent: 'space-between',
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 15,
   },
 });
 
 const Form = () => (
   <View style={styles.container}>
-    <Dish />
-    <View style={styles.row}>
-      <Restaurant />
-      <Price />
-    </View>
-    <View style={styles.row}>
-      <Like />
-      <Rate />
-      <Submit />
+    <View style={styles.form}>
+      <Dish />
+      <View style={styles.row}>
+        <Restaurant />
+        <Price />
+      </View>
+      <View style={styles.row}>
+        <Like />
+        <Rate />
+        <Submit />
+      </View>
     </View>
   </View>
 );

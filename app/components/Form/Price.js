@@ -1,22 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import {
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  View,
-  Dimensions,
-} from 'react-native';
-
-const { height, width } = Dimensions.get('window');
-const margin = (height - 20 - (width + 16 + 35) - 52 * 3) / 2;
-console.log(margin);
+import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 
 const styles = StyleSheet.create({
   view: {
     flex: 0.5,
-    marginLeft: margin,
+    marginLeft: 10.5,
     backgroundColor: 'rgba(240,240,240,0.7)',
     borderRadius: 5,
     height: 52,

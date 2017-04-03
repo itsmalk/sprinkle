@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 import { StyleSheet, TouchableOpacity, View, Image } from 'react-native';
 import { Images } from '@/constants';
 import { setLiked } from '@/actions/post';

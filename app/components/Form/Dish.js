@@ -1,19 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import {
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  View,
-  Dimensions,
-} from 'react-native';
-const { height } = Dimensions.get('window');
+import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 
 const styles = StyleSheet.create({
   view: {
-    marginHorizontal: 15,
-    marginRight: 15,
     backgroundColor: 'rgba(240,240,240,0.7)',
     borderRadius: 5,
     height: 52,
