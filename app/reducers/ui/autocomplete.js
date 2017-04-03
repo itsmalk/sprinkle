@@ -15,7 +15,15 @@ function hiding(state = false, action = {}) {
   return state;
 }
 
+function swiperIndex(state = 0, action = {}) {
+  if (action.type === Actions.SET_SWIPER_INDEX) {
+    return action.payload;
+  }
+  return state;
+}
+
 export default combineReducers({
   visible,
   hiding,
+  swiperIndex,
 });

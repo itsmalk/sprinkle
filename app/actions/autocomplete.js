@@ -15,3 +15,11 @@ export function setHiding(payload) {
     payload,
   };
 }
+
+export const SET_SWIPER_INDEX = `${PREFIX}SET_SWIPER_INDEX`;
+export function setSwiperIndex(payload) {
+  return {
+    type: SET_SWIPER_INDEX,
+    payload,
+  };
+}
