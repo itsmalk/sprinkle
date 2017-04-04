@@ -4,7 +4,7 @@ import { View, StyleSheet, Animated, Dimensions, Keyboard } from 'react-native';
 import Swiper from 'react-native-swiper';
 import { setVisible, setHiding, setSwiperIndex } from '@/actions/autocomplete';
 import BackButton from '@/components/AutoComplete/BackButton';
-import Search from '@/components/AutoComplete/DishSearch';
+import Search from '@/components/AutoComplete/Search';
 
 const { height } = Dimensions.get('window');
 
